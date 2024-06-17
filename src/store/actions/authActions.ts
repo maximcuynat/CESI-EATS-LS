@@ -15,7 +15,7 @@ export const loginUser = (email: string, password: string) => async (dispatch: D
     try {
         const user = await login(email, password);
         dispatch(authActions.loginSuccess(user));
-    } catch (error) {
+    } catch (error: any) {
         alert(error.message);
     }
 };

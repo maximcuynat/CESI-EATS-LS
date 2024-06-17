@@ -16,7 +16,7 @@ const LoginScreen = () => {
             const user = await login(email, password);
             dispatch(authActions.loginSuccess(user));
             // Navigation vers la page suivante après la connexion réussie
-        } catch (error) {
+        } catch (error: any) {
             alert(error.message);
         }
     };
