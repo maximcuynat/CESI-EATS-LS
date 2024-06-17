@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     },
     justifyStart: {
         justifyContent: 'flex-start',
+        marginTop: 15,
     },
     justifyEnd: {
         justifyContent: 'flex-end',
