@@ -34,7 +34,7 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
         <ViewDisplay align='center' justify='top'>
             <TextView type='title' >Client Screen</TextView>
             <TextView>Client info</TextView>
-            <TextView>{isAuthenticated ? 'Connecté' : 'Déconnecté'}</TextView>
+            <TextView>{isAuthenticated ? 'Client is authenticated' : 'Client is not authenticated'}</TextView>
             <ViewDisplay>
 
 

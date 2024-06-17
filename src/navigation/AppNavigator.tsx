@@ -19,9 +19,9 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => {
     const userType = useSelector((state: RootState) => state.user.user?.role);
-    //const userType = useSelector((state: RootState) => state.auth.user?.type);  // Exemple d'accès au type d'utilisateur depuis le state
-
+    
     console.log('User type:', userType);
+    console.log('Token', useSelector((state: RootState) => state.user.token));
 
     return (
         <Stack.Navigator>

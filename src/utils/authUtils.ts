@@ -1,15 +1,15 @@
 import { jwtDecode } from 'jwt-decode';
 
 export const setToken = (token: string): void => {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
 };
 
 export const getToken = (): string | null => {
-    return sessionStorage.getItem('token');
+    return localStorage.getItem('token');
 };
 
 export const removeToken = (): void => {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
 };
 
 export const isTokenValid = (token: string): boolean => {

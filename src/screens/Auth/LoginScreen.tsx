@@ -9,8 +9,15 @@ import TextInputView from '../../components/Input';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/authAPI';
 
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+
 export default function LoginScreen () {
 
+	// Navigation
+	const navigation = useNavigation();
+
+	// Auth
 	const { login } = useAuth();
 
 	// Variables d'état
@@ -67,6 +74,9 @@ export default function LoginScreen () {
 
 			{/* Bouton de connexion */}
 				<TextView type="button" buttonType="primary" onPress={handleSubmit}>Connexion</TextView>
+
+			{/* Lien vers la page d'inscription */}
+				<Button title="Inscription" onPress={() => navigation.navigate('Signup')} />
 			
 			</ViewDisplay>
 		</ViewDisplay>
