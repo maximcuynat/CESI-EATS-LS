@@ -15,29 +15,36 @@ interface PaymentCardProps {
 
   const styles = StyleSheet.create({
     button: {
-        flexDirection: 'row', // Alignement horizontal des éléments internes
-        alignItems: 'center', // Centrage vertical des éléments dans le bouton
-        backgroundColor: '#FFFFFF', // Couleur de fond du bouton (blanc)
-        padding: 10, // Espace autour du contenu à l'intérieur du bouton
-        borderRadius: 5, // Bord arrondi du bouton
-        shadowColor: '#000', // Couleur de l'ombre
-        shadowOffset: { width: 0, height: 2 }, // Décalage de l'ombre
-        shadowOpacity: 0.25, // Opacité de l'ombre
-        shadowRadius: 3.84, // Rayon de l'ombre
-        elevation: 5, // Elevation pour Android pour créer un effet d'ombre
-        marginVertical: 10, // Marge verticale pour séparer les boutons entre eux
-        alignSelf: 'center', // Centrer le bouton dans le conteneur parent
-        width: '90%' // Largeur du bouton à 90% du conteneur parent
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFF',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        marginVertical: 10,
+        width: 270,  // Largeur du bouton
+        height: 90,  // Hauteur du bouton
     },
     image: {
-        width: 40, // Largeur fixe pour l'image
-        height: 40, // Hauteur fixe pour l'image
-        marginRight: 10 // Espace à droite de l'image
+        width: 80,  // Réduire la taille de l'image
+        height: 80, // pour qu'elle soit plus petite dans le cadre
+        marginRight: 10,
+        resizeMode: 'stretch',
+        backgroundColor : '#FFECD1',
+        borderWidth: 10, // Largeur du bord
+        borderColor: '#FFECD1', // Couleur du bord, identique au fond du bouton
+        borderRadius: 15, // Rayon du bord pour le rendre arrondi
     },
     text: {
-        fontSize: 16, // Taille de la police du texte
-        color: '#333', // Couleur de la police
-        fontWeight: 'bold' // Gras pour le texte
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
     }
 });
 
@@ -58,8 +65,8 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ type, onPress }) => {;
     }
 
     return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
-            <ViewDisplay direction="horizontal" align="center">
+        <TouchableOpacity onPress={onPress}>
+            <ViewDisplay direction="horizontal" align="center" style={styles.button}>
                 <Image source={image} style={styles.image}/>
                 <TextView style={styles.text}>{type}</TextView>
             </ViewDisplay>
