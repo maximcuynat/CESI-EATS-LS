@@ -3,7 +3,7 @@ const initialState = {
     isLoggedIn: false,
 };
 
-const authReducer = (state = initialState, action: any) => {
+const authSlice = (state = initialState, action: any) => {
     switch (action.type) {
         case 'LOGIN_SUCCESS':
             return {
@@ -22,4 +22,4 @@ const authReducer = (state = initialState, action: any) => {
     }
 };
 
-export default authReducer;
+export default authSlice;
