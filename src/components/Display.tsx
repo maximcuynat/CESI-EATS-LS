@@ -10,7 +10,7 @@ interface ViewDisplayProps extends ViewProps {
     type?: 'fill' | 'card';
 }
 
-const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type = 'fill', style, ...rest }) => {
+const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type, style, ...rest }) => {
     const viewStyle = [
         styles.container,
         direction === 'horizontal' && styles.horizontal,
@@ -23,7 +23,7 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         justify === 'center' && styles.justifyCenter,
         justify === 'top' && styles.justifyStart,
         justify === 'bottom' && styles.justifyEnd,
-
+        
         type === 'fill' && styles.fill,
         type === 'card' && styles.card,
 

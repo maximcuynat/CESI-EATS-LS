@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: '#FF0000',
 		fontWeight: 'bold',
+		textAlign: 'right',
 	},
 });
 

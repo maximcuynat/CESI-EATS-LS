@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import { Image, ScrollView, Alert } from 'react-native';
 
 import TextView from '../../components/Text';
 import ViewDisplay from '../../components/Display';
@@ -51,14 +51,21 @@ export default function LoginScreen () {
 				const response = await api.login(pseudo, mot_de_passe);
 				const data = response.data;
 				login(data.token);
-			} catch (error) {
-				console.error(error);
+			} catch (error: any) {
+				Alert.alert('Erreur', "Pseudo ou mot de passe incorrects");
 			}
 		}
 	}
 
 	return (
-		<ViewDisplay align="center" justify="center">
+		<ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+		<ViewDisplay align="center" justify="center" type='fill'>
 			<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
 			<ViewDisplay align="center" justify="center" type=''>
 				{/* Pseudo */}
@@ -79,5 +86,6 @@ export default function LoginScreen () {
 			
 			</ViewDisplay>
 		</ViewDisplay>
+		</ScrollView>
 	);
 };
