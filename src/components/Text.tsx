@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     color: '#001524',
     textAlign: 'left',
 	width: '100%',
+	fontFamily: 'Lemon-Regular',
   },
 	title: {
 		fontSize: 28,

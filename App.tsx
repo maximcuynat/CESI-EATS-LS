@@ -4,7 +4,19 @@ import store from './src/store/store';  // Assurez-vous que le store Redux est c
 import { AuthProvider } from './src/context/AuthContext';  // Importez votre AuthProvider depuis le dossier src
 import MainApp from './src/MainApp';  // Importez votre composant principal depuis le dossier src
 
+// Load fonts
+import { useFonts } from 'expo-font';
+
 const App = () => {
+
+    const [fontsLoaded] = useFonts({
+        'Lemon-Regular': require('./assets/font/Lemon/Lemon-Regular.ttf'),
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
         <Provider store={store}>
             <AuthProvider>

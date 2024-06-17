@@ -1,16 +1,14 @@
 import React from 'react';
-import { StyleSheet, Pressable, Text, View, Image } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
+import TextView from './Text';
 
 interface ButtonViewProps {
 	label: string;
 	buttonType?: 'primary' | 'secondary' | 'danger';
-	type?: 'round' | 'square';
-	imagePath?: string;
-	isSelect?: boolean;
 	onClick: () => void;
 }
 
-const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType, type = "square", isSelect, imagePath }) => {
+const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType }) => {
 	
 	const buttonStyle = [
 		styles.button,
@@ -23,29 +21,11 @@ const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType, typ
 		styles.pressable,
 	];
 
-	const roleStyle = [
-		styles.role,
-		isSelect && styles.roleSelect,
-	];
-
-	const stylesImage = [
-		styles.images,
-	];
-
-	if (type === 'round') {
-		return (
-			<View>
-				<Pressable style={roleStyle} onPress={onClick}></Pressable>
-				<Text style={styles.subTitle}>{label}</Text>
-			</View>
-		);
-	} else {
-		return (
-			<Pressable style={pressableStyle} onPress={onClick}>
-				<Text style={buttonStyle}>{label}</Text>
-			</Pressable>
-		);
-	}
+	return (
+		<Pressable style={pressableStyle} onPress={onClick}>
+			<TextView style={buttonStyle}>{label}</TextView>
+		</Pressable>
+	);
 };
 
 const styles = StyleSheet.create({
