@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';  // Utilisation de useSelector pour accéder au state Redux
+
 /*
     import { RootState } from '../store/types';  // Types Redux pour accéder au state global
     import { User } from '../store/slices/userSlice';  // Importer le type User depuis le slice userSlice
@@ -42,9 +43,7 @@ const AppNavigator = () => {
                     }}
                 </Stack.Screen>
             ) : (
-                <Stack.Screen name="Auth" component={AuthNavigator}
-                options={{ headerShown: false }}
-                />
+                <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
             )}
         </Stack.Navigator>
     );

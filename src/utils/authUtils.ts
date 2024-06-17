@@ -1,15 +1,16 @@
 import { jwtDecode } from 'jwt-decode';
+import {AsyncStorage} from 'react-native';
 
 export const setToken = (token: string): void => {
-    localStorage.setItem('token', token);
+    AsyncStorage.setItem('token', token);    
 };
 
 export const getToken = (): string | null => {
-    return localStorage.getItem('token');
+    return AsyncStorage.getItem('token');
 };
 
 export const removeToken = (): void => {
-    localStorage.removeItem('token');
+    AsyncStorage.removeItem('token');
 };
 
 export const isTokenValid = (token: string): boolean => {

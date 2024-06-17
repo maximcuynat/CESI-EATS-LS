@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image } from 'react-native';
+import { Image } from 'react-native';
 
 import TextView from '../../components/Text';
 import ViewDisplay from '../../components/Display';
@@ -30,7 +30,7 @@ export default function LoginScreen () {
 	const [motDePasseErr, setMotDePasseErr] = useState('');
 
 	// Fonction de validation
-	const handleSubmit = async (e: GestureResponderEvent) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
 		// If les champs sont vides
@@ -49,9 +49,7 @@ export default function LoginScreen () {
 		if (pseudo && mot_de_passe) {
 			try {
 				const response = await api.login(pseudo, mot_de_passe);
-				// Recupérer les données json
 				const data = response.data;
-				// Connexion
 				login(data.token);
 			} catch (error) {
 				console.error(error);
@@ -61,8 +59,8 @@ export default function LoginScreen () {
 
 	return (
 		<ViewDisplay align="center" justify="center">
-		<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
-			<ViewDisplay align="center" justify="center" style={{height: 'auto'}}>
+			<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
+			<ViewDisplay align="center" justify="center" type=''>
 				{/* Pseudo */}
 				<TextView>Pseudo</TextView>
 				<TextInputView placeholder="Votre pseudo" value={pseudo} onChangeText={setPseudo} />
