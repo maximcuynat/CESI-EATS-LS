@@ -44,23 +44,15 @@ const styles = StyleSheet.create({
     },
     cardContent: {
       flexDirection: "row",
-      alignItems: "center",
+      alignItems: "center"
     },
     logo: {
-      width: 50,
-      height: 50,
+      width: 75,
+      height: 75,
       marginRight: 15,
     },
     textContainer: {
       flex: 1,
-    },
-    title: {
-      fontSize: 18,
-      fontWeight: "bold",
-    },
-    subtitle: {
-      fontSize: 14,
-      color: "#888",
     },
     address: {
       fontSize: 14,
