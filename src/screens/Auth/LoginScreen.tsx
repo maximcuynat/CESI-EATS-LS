@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, Image } from 'react-native';
 import TextView from '../../components/Text';
 import ViewDisplay from '../../components/Display';
 import TextInputView from '../../components/Input';
+import ButtonView from '../../components/Button';
 
 // Auth
 import { useAuth } from '../../context/AuthContext';
@@ -73,10 +74,10 @@ export default function LoginScreen () {
 				<TextView type="error">{motDePasseErr}</TextView>
 
 			{/* Bouton de connexion */}
-				<TextView type="button" buttonType="primary" onPress={handleSubmit}>Connexion</TextView>
+				<ButtonView label="Connexion" onClick={handleSubmit} />
 
 			{/* Lien vers la page d'inscription */}
-				<Button title="Inscription" onPress={() => navigation.navigate('Signup')} />
+				<ButtonView label="Inscription" onClick={() => navigation.navigate('Signup')} />
 			
 			</ViewDisplay>
 		</ViewDisplay>

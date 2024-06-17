@@ -4,11 +4,11 @@ import { Text, StyleSheet, TextProps } from 'react-native';
 
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
-    type?: 'title' | 'subtitle' | 'link' | 'button' | 'error';
+    type?: 'title' | 'subtitle' | 'link' | 'error';
     buttonType?: 'primary' | 'secondary' | 'danger';
 }
 
-const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', buttonType = "button", ...rest  }) => {
+const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', ...rest  }) => {
   const textStyle = [
     styles.text,
     type === 'title' && styles.title,
@@ -17,10 +17,7 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', but
 	type === 'error' && styles.error,
 
     // Type
-    type === 'button' && styles.button,
-    type === 'button' && buttonType === 'primary' && styles.buttonPrimary,
-    type === 'button' && buttonType === 'secondary' && styles.buttonSecondary,
-    type === 'button' && buttonType === 'danger' && styles.buttonDanger,
+    
   ];
   return (<Text style={[textStyle, style]} {...rest}>{children}</Text>);
 };
@@ -52,38 +49,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: '#FF0000',
 		fontWeight: 'bold',
-	},
-
-	// Button
-	button: {
-		backgroundColor: '#FF7D00',
-		marginTop: 20,
-		paddingHorizontal: 15,
-		paddingTop: 15,
-		paddingBottom: 17,
-		borderRadius: 30,
-		width: '70%',
-		// Text
-		color: '#FFECD1',
-		fontWeight: 'bold',
-		fontSize: 24,
-		textAlign: 'center',
-		// Shadow text
-		textShadowColor: '#78290F',
-		textShadowOffset: { width: 0, height: 3 },
-		textShadowRadius: 4,
-	},
-	buttonPrimary: {
-		backgroundColor: '#78290F',
-    textShadowColor: '#FF7D00',
-		textShadowOffset: { width: 0, height: 3 },
-		textShadowRadius: 4,
-	},
-	buttonSecondary: {
-		backgroundColor: '#2ecc71',
-	},
-	buttonDanger: {
-		backgroundColor: '#e74c3c',
 	},
 });
 
