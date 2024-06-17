@@ -12,9 +12,16 @@ interface ButtonViewProps {
 const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType }) => {
   
 	// Variables
-	const buttonStyle = [];
+	const buttonStyle = [
+		styles.button,
+		buttonType === 'primary' && styles.buttonPrimary,
+		buttonType === 'secondary' && styles.buttonSecondary,
+		buttonType === 'danger' && styles.buttonDanger,
+	];
 
-	const pressableStyle = [];
+	const pressableStyle = [
+		styles.pressable,
+	];
 
   // Return
   return (
@@ -25,7 +32,13 @@ const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType }) =
 };
 
 const styles = StyleSheet.create({
-    // Button
+
+	// Pressable
+	pressable: {
+		width: '70%',
+	},
+
+  // Button
 	button: {
 		backgroundColor: '#FF7D00',
 		marginTop: 20,
@@ -33,7 +46,6 @@ const styles = StyleSheet.create({
 		paddingTop: 15,
 		paddingBottom: 17,
 		borderRadius: 30,
-		width: '70%',
 		// Text
 		color: '#FFECD1',
 		fontWeight: 'bold',
