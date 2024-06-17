@@ -4,11 +4,13 @@ import store from './src/store/store';  // Assurez-vous que le store Redux est c
 import { AuthProvider } from './src/context/AuthContext';  // Importez votre AuthProvider depuis le dossier src
 import MainApp from './src/App';  // Importez votre composant principal depuis le dossier src
 
+import TextView from './src/components/Text';
+
 const App = () => {
     return (
         <Provider store={store}>
             <AuthProvider>
-                <MainApp />  {/* MainApp peut être votre navigation principale ou le contenu de votre application */}
+                <MainApp />
             </AuthProvider>
         </Provider>
     );

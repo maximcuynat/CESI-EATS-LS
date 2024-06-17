@@ -1,14 +1,14 @@
-// Text.tsx
+// TextView.tsx
 import React from 'react';
 import { Text, StyleSheet, TextProps } from 'react-native';
 
-interface TextView extends TextProps {
+interface TextViewProps extends TextProps {
     children?: React.ReactNode;
     type?: 'title' | 'subtitle' | 'link' | 'button' | 'error';
     buttonType?: 'primary' | 'secondary' | 'danger';
 }
 
-const TextView: React.FC<TextView> = ({ children, style, type = 'text', buttonType = "button", ...rest  }) => {
+const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', buttonType = "button", ...rest  }) => {
   const textStyle = [
     styles.text,
     type === 'title' && styles.title,
@@ -22,9 +22,7 @@ const TextView: React.FC<TextView> = ({ children, style, type = 'text', buttonTy
     type === 'button' && buttonType === 'secondary' && styles.buttonSecondary,
     type === 'button' && buttonType === 'danger' && styles.buttonDanger,
   ];
-  return (
-	<Text style={[textStyle, style]} {...rest}>{children}</Text>
-  );
+  return (<Text style={[textStyle, style]} {...rest}>{children}</Text>);
 };
 
 const styles = StyleSheet.create({

@@ -4,7 +4,7 @@ import AppNavigator from './navigation/AppNavigator';  // Assurez-vous d'adapter
 const MainApp = () => {
     return (
         <NavigationContainer>
-            <AppNavigator />  {/* Votre navigation principale */}
+            <AppNavigator />
         </NavigationContainer>
     );
 };

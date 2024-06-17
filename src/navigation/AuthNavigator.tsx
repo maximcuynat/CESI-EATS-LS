@@ -4,9 +4,11 @@ import LoginScreen from '../screens/Auth/LoginScreen';
 
 const Stack = createStackNavigator();
 
+console.log('AuthNavigator');
+
 const AuthNavigator = () => (
     <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
 );
 
