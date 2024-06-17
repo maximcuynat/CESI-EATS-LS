@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import TextView from "./Text";
 import ViewDisplay from "./Display";
 
