@@ -18,7 +18,7 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         align === 'center' && styles.alignCenter,
         align === 'left' && styles.alignStart,
         align === 'right' && styles.alignEnd,
-        
+
         justify === 'center' && styles.justifyCenter,
         justify === 'top' && styles.justifyStart,
         justify === 'bottom' && styles.justifyEnd,
