@@ -14,9 +14,9 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 
 	// Screen options (hide header)
 	React.useLayoutEffect(() => {
-	navigation.setOptions({
-	headerShown: false,
-	});
+		navigation.setOptions({
+			headerShown: true,
+		});
 	}, [navigation]);
 
 	const { isAuthenticated, login, logoutUser } = useAuth();
@@ -24,13 +24,9 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 	console.log('ClientHomeScreen', isAuthenticated);
 
 	return (
-	<>
-		<ViewDisplay align='center' justify='top'>
-			<TextView type='title' >Client Screen</TextView>
-			<TextView>Client info</TextView>
-			<TextView>{isAuthenticated ? 'Client is authenticated' : 'Client is not authenticated'}</TextView>
+		<ViewDisplay align='center' justify='top' style={{backgroundColor: 'red'}}>
+			
 		</ViewDisplay>
-	</>
 	);
 };
 

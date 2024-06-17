@@ -16,6 +16,9 @@ import ClientHomeScreen from '../screens/Client/HomeScreen';
 import RestaurantHomeScreen from '../screens/Restaurant/HomeScreen';
 import DeliveryHomeScreen from '../screens/Delivery/HomeScreen';
 
+// ClientNavigator, RestaurantNavigator, DeliveryNavigator, etc.
+import ClientNavigator from '../screens/Client/ClientNavigator';
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -31,10 +34,10 @@ const AppNavigator = () => {
                     {(props: { route: any; navigation: any }) => {
                         switch (userType) {
                             case 'client':
-                                return <ClientHomeScreen route={props.route} navigation={props.navigation} />;
-                            case 'restaurant':
+                                return <Stack.Screen name="Client" component={ClientNavigator} />;
+                            case 'restaurateur':
                                 return <RestaurantHomeScreen route={props.route} navigation={props.navigation} />;
-                            case 'delivery':
+                            case 'livreur':
                                 return <DeliveryHomeScreen route={props.route} navigation={props.navigation} />;
                             // Ajouter d'autres cas pour d'autres types d'utilisateurs au besoin
                             default:
