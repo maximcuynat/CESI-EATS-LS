@@ -24,7 +24,7 @@ const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
         <TextView type="subtitle" style={styles.description}>{menu.description}</TextView>
       </ViewDisplay>
 
-      <ViewDisplay style={styles.rightContainer} align="right" type="">
+      <ViewDisplay style={styles.rightContainer} align="right" type='none'>
         <Image source={{ uri: menu.path_image }} style={styles.image} />
         {menu.items.map((item, index) => (
             <TextView key={index} type="subtitle" style={styles.item}>{menu.quantiteItems[index]} x {item}</TextView>

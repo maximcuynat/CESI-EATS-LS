@@ -7,7 +7,7 @@ interface ViewDisplayProps extends ViewProps {
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
     justify?: 'center' | 'top' | 'bottom';
-    type?: 'fill' | 'card';
+    type?: 'fill' | 'card' | 'none';
 }
 
 const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type = 'fill', style, ...rest }) => {

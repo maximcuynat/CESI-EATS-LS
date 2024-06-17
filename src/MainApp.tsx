@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import ViewDisplay from './components/Display';
 import DispMenuDetails from './components/DispMenuDetails';
 
