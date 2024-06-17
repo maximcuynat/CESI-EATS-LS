@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, Pressable, Text } from 'react-native';
 
 // Coucou
 
@@ -9,19 +9,18 @@ interface ButtonViewProps {
   onClick: () => void;
 }
 
-const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType = 'primary' }) => {
-  const buttonStyle = [
-    styles.button,
-    
-    // Styles
-    buttonType === 'primary' && styles.buttonPrimary,
-    buttonType === 'secondary' && styles.buttonSecondary,
-    buttonType === 'danger' && styles.buttonDanger,
-  ];
+const ButtonView: React.FC<ButtonViewProps> = ({ label, onClick, buttonType }) => {
+  
+	// Variables
+	const buttonStyle = [];
+
+	const pressableStyle = [];
 
   // Return
   return (
-    <TextInput style={buttonStyle} placeholder={label} onPress={onClick} />
+		<Pressable onPress={onClick} style={pressableStyle}>
+			<Text style={buttonStyle} >{label}</Text>
+		</Pressable>
   );
 };
 

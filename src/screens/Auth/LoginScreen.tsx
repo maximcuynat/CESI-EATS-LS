@@ -77,7 +77,7 @@ export default function LoginScreen () {
 				<ButtonView label="Connexion" onClick={handleSubmit} />
 
 			{/* Lien vers la page d'inscription */}
-				<ButtonView label="Inscription" onClick={() => navigation.navigate('Signup')} />
+				<ButtonView buttonType='primary'  label="Inscription" onClick={() => navigation.navigate('Signup')} />
 			
 			</ViewDisplay>
 		</ViewDisplay>
