@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../api/authAPI';
 import { authActions } from '../../store/actions/authActions';
 
+import TextView from '../../components/Text';
+
 const LoginScreen = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
@@ -21,7 +23,7 @@ const LoginScreen = () => {
 
     return (
         <View>
-            <Text>Email</Text>
+            <TextView type='title'>Email</TextView>
             <TextInput value={email} onChangeText={setEmail} />
             <Text>Mot de passe</Text>
             <TextInput value={password} onChangeText={setPassword} secureTextEntry />
