@@ -8,8 +8,8 @@ const Stack = createStackNavigator();
 
 const ClientNavigator = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="ClientHome" component={ClientHomeScreen} />
+        <Stack.Navigator initialRouteName="ClientHome" screenOptions={{ headerShown: false, headerTitle: "Client" }}>
+            <Stack.Screen name="ClientHome" component={ClientHomeScreen} options={{ headerShown: false, headerTitle: "Home Client" }}  />
         </Stack.Navigator>
     );
 };
