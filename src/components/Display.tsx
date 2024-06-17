@@ -7,9 +7,10 @@ interface ViewDisplayProps extends ViewProps {
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
     justify?: 'center' | 'top' | 'bottom';
+    type?: 'fill' | 'card';
 }
 
-const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center',  style, ...rest }) => {
+const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type = 'fill', style, ...rest }) => {
     const viewStyle = [
         styles.container,
         direction === 'horizontal' && styles.horizontal,
@@ -22,6 +23,10 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         justify === 'center' && styles.justifyCenter,
         justify === 'top' && styles.justifyStart,
         justify === 'bottom' && styles.justifyEnd,
+
+        type === 'fill' && styles.fill,
+        type === 'card' && styles.card,
+
         style, // Garde cette ligne pour appliquer les styles supplémentaires
     ];
     return <View style={viewStyle} {...rest}>{children}</View>;
@@ -30,10 +35,16 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '100%',
         backgroundColor: '#FFECD1',
         paddingHorizontal: 15,
         paddingVertical: 10,
+    },
+    fill: {
+        flex: 1,
+    },
+    card: {
+        height: 'auto',
+        alignItems: 'stretch',
     },
     horizontal: {
         flexDirection: 'row',
@@ -55,6 +66,7 @@ const styles = StyleSheet.create({
     },
     justifyStart: {
         justifyContent: 'flex-start',
+        marginTop: 15,
     },
     justifyEnd: {
         justifyContent: 'flex-end',

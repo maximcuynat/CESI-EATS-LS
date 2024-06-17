@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import TextView from "./Text";
 import ViewDisplay from "./Display";
-import { Card } from '@rneui/themed';
+import { Image } from "react-native-elements";
 
 interface DispRestaurantProps {
   restaurant: {
@@ -15,49 +15,44 @@ interface DispRestaurantProps {
 
 const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant }) => {
   return (
-    <ViewDisplay align="center" justify="center" direction="vertical"
-     style={{ height: 'auto'}} >
-        <Card>
-            <View style={styles.cardContent}>
-                <Card.Image source={{ uri: restaurant.path_image }} style={styles.logo} />
-                <View style={styles.textContainer}>
-                    <TextView type="title">{restaurant.name}</TextView>
-                    <TextView type="subtitle">{restaurant.distance} km</TextView>
-                    <TextView type="subtitle">Adresse : {restaurant.address}</TextView>
-                </View>
+    <ViewDisplay align="center" justify="center" direction="vertical" type="card">
+        <View style={styles.cardContent}>
+            <Image source={{ uri: restaurant.path_image }} style={styles.logo} />
+            <View style={styles.textContainer}>
+                <TextView type="title" style={styles.colorText}>{restaurant.name}</TextView>
+                <TextView type="subtitle" style={styles.subsubtitle}>Distance : {restaurant.distance} km</TextView>
+                <TextView type="subtitle" style={styles.colorText}>Adresse : {restaurant.address}</TextView>
             </View>
-      </Card>
+        </View>
     </ViewDisplay>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 10,
-      backgroundColor: "#fdf0da",
-    },
-    card: {
-      borderRadius: 10,
-      padding: 15,
-      marginBottom: 10,
-    },
     cardContent: {
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
+      borderRadius: 10,
+      backgroundColor: "white",
+      padding: 10,
     },
     logo: {
       width: 75,
       height: 75,
+      borderRadius: 10,
       marginRight: 15,
     },
     textContainer: {
       flex: 1,
     },
-    address: {
-      fontSize: 14,
-      color: "#444",
+    colorText: {
+      color: '#636E72'
     },
+    subsubtitle: {
+        fontSize: 18,
+        color: '#636E72',
+        fontWeight: 'light',
+    }
   });
 
 export default DispRestaurant;
