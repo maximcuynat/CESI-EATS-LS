@@ -33,15 +33,22 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
         <>
         <ViewDisplay align='center' justify='top'>
             <TextView type='title' >Client Screen</TextView>
+            <TextView>Client info</TextView>
+            <TextView>{isAuthenticated ? 'Connecté' : 'Déconnecté'}</TextView>
+            <ViewDisplay>
+
+
+                {isAuthenticated ? (
+                    <Button title="Déconnexion" onPress={handleLogout} />
+                ) : (
+                    <Button title="Connexion" onPress={handleLogin} />
+                )}
+                <Text>{isAuthenticated ? 'Connecté' : 'Déconnecté'}</Text>
+            </ViewDisplay>
         </ViewDisplay>
             
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            {isAuthenticated ? (
-                <Button title="Déconnexion" onPress={handleLogout} />
-            ) : (
-                <Button title="Connexion" onPress={handleLogin} />
-            )}
-            <Text>{isAuthenticated ? 'Connecté' : 'Déconnecté'}</Text>
+            
         </View>
         </>
         
