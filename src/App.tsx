@@ -1,20 +1,12 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Provider as ReduxProvider } from 'react-redux';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AppNavigator } from './navigation/AppNavigator';  // À adapter selon votre configuration de navigation
-import store from './store/store';  // À adapter selon votre configuration Redux
+import AppNavigator from './navigation/AppNavigator';  // Assurez-vous d'adapter le chemin selon votre structure
 
-const App = () => {
+const MainApp = () => {
     return (
-        <ReduxProvider store={store}>
-            <SafeAreaProvider>
-                <NavigationContainer>
-                    <AppNavigator />
-                </NavigationContainer>
-            </SafeAreaProvider>
-        </ReduxProvider>
+        <NavigationContainer>
+            <AppNavigator />
+        </NavigationContainer>
     );
 };
 
-export default App;
+export default MainApp;

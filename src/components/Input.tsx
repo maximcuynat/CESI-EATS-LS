@@ -13,6 +13,7 @@ interface InputView extends TextProps {
 const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeholder, value, Name, ...rest  }) => {
   const textStyle = [
     styles.text,
+    styles.shadowBox,
     type === 'text' && styles.textInput,
     type === 'password' && styles.textPassword,
   ];
@@ -39,15 +40,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
         paddingHorizontal: 15,
         paddingVertical: 15,
-        borderRadius: 30,
+        borderRadius: 15,
         marginBottom: 5,
     },
     textPassword: {
         backgroundColor: '#F5F5F5',
         paddingHorizontal: 15,
         paddingVertical: 15,
-        borderRadius: 30,
+        borderRadius: 15,
         marginBottom: 5,
+    },
+
+    shadowBox: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
 });
 
