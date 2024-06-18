@@ -45,32 +45,7 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 
   // Recuperer les menu du restaurateur
 
-  const menus = [
-		{
-				title: "SALOPE",
-				price: 12,
-				description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-				items: ["Boisson", "Burger", "Frites"],
-				quantiteItems: [1, 2, 2],
-				path_image: "../assets/logo_menus/logo_bestof.png",
-		},
-		{
-				title: "Pizza",
-				price: 15,
-				description: "Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit.",
-				items: ["item1", "item2", "item3", "item4", "item5", "item6"],
-				quantiteItems: [1, 2, 2],
-				path_image: "../assets/logo_menus/logo_bestof.png",
-		},
-		{
-				title: "Pasta",
-				price: 12,
-				description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-				items: ["item1", "item2", "item3"],
-				quantiteItems: [1, 2, 2],
-				path_image: "../assets/logo_menus/logo_bestof.png",
-		},
-  ];
+  const menus = [];
   
 
   return (
@@ -105,13 +80,17 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
         </Pressable>
       </ViewDisplay>
 
-      <ScrollView style={{flex: 1}} >
-        <ViewDisplay direction='vertical' align='center' justify='top' type='fill'  >
-          {menus.map((menu, index) => (
-            <DispMenu key={index} menu={menu} />
-          ))}
-        </ViewDisplay>
-      </ScrollView>
+      {menus.length === 0 ? (
+				<TextView type='error' style={{textAlign: 'center', marginTop: 20, fontWeight: '900'}}>Pas de menu disponible</TextView>
+			) : (
+				<ScrollView style={{flex: 1}} >
+					<ViewDisplay direction='vertical' align='center' justify='top' type='fill'  >
+						{menus.map((menu, index) => (
+							<DispMenu key={index} menu={menu} />
+						))}
+					</ViewDisplay>
+				</ScrollView>
+			)}
 
 
 		</SafeAreaView>

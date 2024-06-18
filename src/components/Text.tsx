@@ -5,11 +5,11 @@ import * as Font from 'expo-font';
 
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
-    type?: 'title' | 'subtitle' | 'error';
+    type?: 'title' | 'subtitle' | 'text' | 'error';
     buttonType?: 'primary' | 'secondary' | 'danger';
 }
 
-const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', ...rest  }) => {
+const TextView: React.FC<TextViewProps> = ({ children, style, type = "text", ...rest  }) => {
 
 	// Font
 	Font.loadAsync({
@@ -17,7 +17,7 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', ...
 	});
 
   const textStyle = [
-    styles.text,
+		type === 'text' && styles.default,
     type === 'title' && styles.title,
     type === 'subtitle' && styles.subtitle,
 		type === 'error' && styles.error,
@@ -28,17 +28,22 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', ...
 const styles = StyleSheet.create({
 	// Text
   text: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 10,
     color: '#001524',
     textAlign: 'left',
-		width: '100%',
   },
+
+	default: {
+		fontSize: 16,
+    color: '#001524',
+		width: 'auto',
+	},
 
 	// Title
 	title: {
 		fontSize: 28,
-		fontWeight: 'bolder',
+		fontWeight: 'bold',
 		textAlign: 'center',
 	},
 
