@@ -94,7 +94,6 @@ export default function SignupScreen(){
         if (response.message === 'User registered') {
           // Requette de connexion
           const loginResponse = await api.login(pseudo, password);
-          console.log(loginResponse);
           // Si l'utilisateur est connecté
           if (loginResponse.data.message === 'User logged in') {
             login(loginResponse.data.token);

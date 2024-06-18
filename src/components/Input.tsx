@@ -4,7 +4,7 @@ import { StyleSheet, TextProps, TextInput } from 'react-native';
 
 interface InputView extends TextProps {
     children?: React.ReactNode;
-    type?: 'text' | 'password';
+    type?: 'text' | 'password' | 'search';
     placeholder?: string;
     value?: string;
     Name?: string;
@@ -16,6 +16,7 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
     styles.shadowBox,
     type === 'text' && styles.textInput,
     type === 'password' && styles.textPassword,
+    type === 'search' && styles.searchInput,
   ];
   if (type === 'text') {
     return (
@@ -50,6 +51,14 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         borderRadius: 15,
         marginBottom: 15,
+    },
+
+    searchInput: { 
+      backgroundColor: '#F5F5F5',
+      paddingHorizontal: 15,
+      paddingVertical: 15,
+      borderRadius: 15,
+      marginBottom: 0,
     },
 
     shadowBox: {
