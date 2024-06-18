@@ -18,7 +18,7 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
     type === 'password' && styles.textPassword,
     type === 'search' && styles.searchInput,
   ];
-  if (type === 'text') {
+  if (type === 'text' || type === 'search') {
     return (
       <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' />
     );

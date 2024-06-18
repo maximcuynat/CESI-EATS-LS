@@ -80,28 +80,15 @@ const styles = StyleSheet.create({
 		top: 40,
 		right: 40,
 		zIndex: -1,
-
-		// Width
 		width: 'auto',
-
-		// Couleurs
 		backgroundColor: '#FF7D00',
-
-		// Bordures
 		borderRadius: 10,
+		borderWidth: 1,
 	},
 
 	menuButton: {
 		width: '100%',
-		// Bordures
-		borderRadius: 10,
-		borderWidth: 1,
-
-		// Marges
 		paddingVertical: 6,
-
-		// Couleurs
-		borderColor: '#001524',
 	},
 
 	menuOption: {
