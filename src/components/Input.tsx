@@ -35,19 +35,21 @@ const styles = StyleSheet.create({
         color: '#001524',
         width: '100%',
     },
+
     textInput: {
         backgroundColor: '#F5F5F5',
         paddingHorizontal: 15,
         paddingVertical: 15,
         borderRadius: 15,
-        marginBottom: 5,
+        marginBottom: 15,
     },
+
     textPassword: {
         backgroundColor: '#F5F5F5',
         paddingHorizontal: 15,
         paddingVertical: 15,
         borderRadius: 15,
-        marginBottom: 5,
+        marginBottom: 15,
     },
 
     shadowBox: {

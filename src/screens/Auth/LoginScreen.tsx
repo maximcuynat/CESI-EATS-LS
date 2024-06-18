@@ -66,6 +66,8 @@ export default function LoginScreen () {
 		}
 	}
 
+	// ========================================================================================
+
 	return (
 		<ScrollView
         contentContainerStyle={{
@@ -80,7 +82,7 @@ export default function LoginScreen () {
 			{/* Pseudo */}
 				<TextView type="subtitle">Pseudo</TextView>
 				<TextInputView placeholder="Votre pseudo" onChangeText={setPseudo} />
-				<TextView type="error">{pseudoErr}</TextView>
+				{pseudoErr && <TextView type="error">{pseudoErr}</TextView>}
 
 			{/* Mot de passe */}
 				<TextView type="subtitle">Mot de passe</TextView>

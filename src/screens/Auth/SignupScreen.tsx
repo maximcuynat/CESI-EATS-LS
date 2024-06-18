@@ -98,74 +98,69 @@ export default function SignupScreen(){
   
   }
   
+  // ========================================================================================
 
   return (
-    <ScrollView
-    contentContainerStyle={{
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-    >
-    <ViewDisplay align='center' justify='center' style={{paddingVertical: 60}} type='fill'>
-    <TextView type='title'>Vos informations d'inscription</TextView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center',  alignItems: 'center', }}>
+      <ViewDisplay align='center' justify='center' style={{paddingVertical: 60}} type='fill'>
+      <TextView type='title'>Vos informations d'inscription</TextView>
 
-    <TextView type='subtitle'>Pseudo</TextView>
-    <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
-    {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
+      <TextView type='subtitle'>Pseudo</TextView>
+      <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
+      {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
 
-    <TextView type='subtitle'>Email</TextView>
-    <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
-    {emailErr && <TextView type='error'>{emailErr}</TextView>}
+      <TextView type='subtitle'>Email</TextView>
+      <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
+      {emailErr && <TextView type='error'>{emailErr}</TextView>}
 
-    <TextView type='subtitle'>Mot de passe</TextView>
-    <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
-    {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
+      <TextView type='subtitle'>Mot de passe</TextView>
+      <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
+      {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
 
-    <TextView type='subtitle'>Rôle</TextView>
-    <ViewDisplay 
-      direction='horizontal' align='center' 
-      style={{width: '100%', justifyContent: 'space-between', }} >
+      <TextView type='subtitle'>Rôle</TextView>
+      <ViewDisplay 
+        direction='horizontal' align='center' 
+        style={{width: '100%', justifyContent: 'space-between', }} >
 
-      <View>
-        <Pressable style={[styles.role, role === 'client' && styles.roleSelect]} onPress={() => setRole('client')} >
-          <Image source={require('../../../assets/img/role-client.png')} style={{
-            height: 70,
-            width: 60,
-            }} />
-        </Pressable>
-        <TextView type='subtitle' style={styles.subTitle}>Client</TextView>
-      </View>
+        <View>
+          <Pressable style={[styles.role, role === 'client' && styles.roleSelect]} onPress={() => setRole('client')} >
+            <Image source={require('../../../assets/img/role-client.png')} style={{
+              height: 70,
+              width: 60,
+              }} />
+          </Pressable>
+          <TextView type='subtitle' style={styles.subTitle}>Client</TextView>
+        </View>
 
-      <View>
-        <Pressable style={[styles.role, role === 'restaurateur' && styles.roleSelect]} onPress={() => setRole('restaurateur')} >
-          <Image source={require('../../../assets/img/role-restaurateur.png')} style={{
-            height: 65,
-            width: 65,
-            }} />
-        </Pressable>
-        <TextView type='subtitle' style={styles.subTitle}>Restaurateur</TextView>
-      </View>
+        <View>
+          <Pressable style={[styles.role, role === 'restaurateur' && styles.roleSelect]} onPress={() => setRole('restaurateur')} >
+            <Image source={require('../../../assets/img/role-restaurateur.png')} style={{
+              height: 65,
+              width: 65,
+              }} />
+          </Pressable>
+          <TextView type='subtitle' style={styles.subTitle}>Restaurateur</TextView>
+        </View>
 
-      <View>
-        <Pressable style={[styles.role, role === 'livreur' && styles.roleSelect]} onPress={() => setRole('livreur')} >
-          <Image source={require('../../../assets/img/role-livreur.png')} style={{
-            height: 70,
-            width: 75,
-            }} />
-        </Pressable>
-        <TextView type='subtitle' style={styles.subTitle}>Livreur</TextView>
-      </View>
+        <View>
+          <Pressable style={[styles.role, role === 'livreur' && styles.roleSelect]} onPress={() => setRole('livreur')} >
+            <Image source={require('../../../assets/img/role-livreur.png')} style={{
+              height: 70,
+              width: 75,
+              }} />
+          </Pressable>
+          <TextView type='subtitle' style={styles.subTitle}>Livreur</TextView>
+        </View>
 
 
-    </ViewDisplay>
+      </ViewDisplay>
 
-    <ButtonView buttonType='primary' label="Valider" onClick={handleSubmit} />
+      <ButtonView buttonType='primary' label="Valider" onClick={handleSubmit} />
 
-    <ButtonView buttonType='secondary' label='Retour' onClick={() => navigation.navigate('Login')} />
-      
-    </ViewDisplay>
-  </ScrollView>
+      <ButtonView buttonType='secondary' label='Retour' onClick={() => navigation.navigate('Login')} />
+        
+      </ViewDisplay>
+    </ScrollView>
   );
 }
 
