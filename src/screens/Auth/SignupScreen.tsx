@@ -115,15 +115,15 @@ export default function SignupScreen(){
 
       <TextView type='subtitle'>Pseudo</TextView>
       <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
-      {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
+      <TextView type='error'>{pseudoErr}</TextView>
 
       <TextView type='subtitle'>Email</TextView>
       <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
-      {emailErr && <TextView type='error'>{emailErr}</TextView>}
+      <TextView type='error'>{emailErr}</TextView>
 
       <TextView type='subtitle'>Mot de passe</TextView>
       <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
-      {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
+      <TextView type='error'>{passwordErr}</TextView>
 
       <TextView type='subtitle'>Rôle</TextView>
       <ViewDisplay 

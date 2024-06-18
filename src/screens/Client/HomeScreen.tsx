@@ -39,6 +39,8 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 		}, 100);
 	}
 
+	// ========================================================================================================
+
 
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
