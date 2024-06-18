@@ -26,11 +26,26 @@ export default function SignupScreen(){
 	const { login } = useAuth();
 
 	// Variables d'état
+
+  // Pseudo seulement en minuscule
   const [pseudo, setPseudo] = useState('');
+  // Regex pour pseudo minuscule et chiffre
+  const pseudoRegex = /^[a-z0-9]+$/;
+
+  // Email
   const [email, setEmail] = useState('');
+  // Regex pour email
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+  // Mot de passe
   const [password, setPassword] = useState('');
+  // Regex pour mot de passe
+  const passwordRegex = /^[a-zA-Z0-9]{6,}$/;
+
+  // Role
   const [role, setRole] = useState('Client');
-  const [parrain, setParrain] = useState(0);
+  // Regex pour role
+  const roleRegex = /^(client|restaurateur|livreur)$/;
 
   // Variables d'état pour les erreurs
   const [pseudoErr, setPseudoErr] = useState('');
@@ -46,28 +61,34 @@ export default function SignupScreen(){
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    // If les champs sont vides
+    // Vériver tout les champs
     if (!pseudo) {
       setPseudoErr('Le pseudo est requis');
+    } else if (!pseudoRegex.test(pseudo)) {
+      setPseudoErr('Le pseudo doit être en minuscule et sans espace');
     } else {
       setPseudoErr('');
     }
 
     if (!email) {
       setEmailErr('L\'email est requis');
+    } else if (!emailRegex.test(email)) {
+      setEmailErr('L\'email est invalide');
     } else {
       setEmailErr('');
     }
 
     if (!password) {
       setPasswordErr('Le mot de passe est requis');
+    } else if (!passwordRegex.test(password)) {
+      setPasswordErr('Le mot de passe doit contenir au moins 6 caractères');
     } else {
       setPasswordErr('');
     }
 
     if (pseudo && email && password) {
       try {
-        const response = await api.signup(pseudo, email, password, role);
+        const response = await api.signup(pseudo, password, email, role);
         const data = response.data;
         login(data.token);
       } catch (error) {
@@ -90,16 +111,16 @@ export default function SignupScreen(){
     <TextView type='title'>Vos informations d'inscription</TextView>
 
     <TextView type='subtitle'>Pseudo</TextView>
-        <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
-        <TextView type='error'>{pseudoErr}</TextView>
+    <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
+    {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
 
     <TextView type='subtitle'>Email</TextView>
     <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
-    <TextView type='error'>{emailErr}</TextView>
+    {emailErr && <TextView type='error'>{emailErr}</TextView>}
 
     <TextView type='subtitle'>Mot de passe</TextView>
     <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
-    <TextView type='error'>{passwordErr}</TextView>
+    {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
 
     <TextView type='subtitle'>Rôle</TextView>
     <ViewDisplay 
@@ -139,9 +160,9 @@ export default function SignupScreen(){
 
     </ViewDisplay>
 
-    <ButtonView label="je m'inscrit" onClick={handleSubmit} />
+    <ButtonView buttonType='primary' label="Valider" onClick={handleSubmit} />
 
-    <ButtonView buttonType='primary' label='je me connecte' onClick={() => navigation.navigate('Login')} />
+    <ButtonView buttonType='secondary' label='Retour' onClick={() => navigation.navigate('Login')} />
       
     </ViewDisplay>
   </ScrollView>
@@ -155,8 +176,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width: 100,
     height: 100,
-    padding: 0,
-    margin: 0,
     borderWidth: 1.5,
     borderColor: 'black',
 
@@ -175,8 +194,16 @@ const styles = StyleSheet.create({
 	},
 
   subTitle: {
+    // Alignement
     textAlign: 'center',
-    marginTop: 10,
-    fontSize: 18
+
+    // Taille
+    fontSize: 16,
+
+    // Marge
+    marginVertical: 10,
+
+    // Police
+    fontFamily: 'Lemon-Regular',
   },
 });

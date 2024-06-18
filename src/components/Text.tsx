@@ -4,7 +4,7 @@ import { Text, StyleSheet, TextProps } from 'react-native';
 
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
-    type?: 'title' | 'subtitle' | 'link' | 'error';
+    type?: 'title' | 'subtitle' | 'error';
     buttonType?: 'primary' | 'secondary' | 'danger';
 }
 
@@ -13,11 +13,7 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type = 'text', ...
     styles.text,
     type === 'title' && styles.title,
     type === 'subtitle' && styles.subtitle,
-    type === 'link' && styles.link,
 	type === 'error' && styles.error,
-
-    // Type
-    
   ];
   return (<Text style={[textStyle, style]} {...rest}>{children}</Text>);
 };
@@ -29,23 +25,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#001524',
     textAlign: 'left',
-	width: '100%',
-	fontFamily: 'Lemon-Regular',
+		width: '100%',
   },
+
+	// Title
 	title: {
 		fontSize: 28,
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
+
+	// Subtitle
 	subtitle: {
 		fontSize: 20,
 		fontWeight: 'bold',
+		fontStyle: 'italic',
 	},
-	link: {
-		fontSize: 18,
-		color: '#15616D',
-		fontWeight: 'bold',
-	},
+
+	// Error
 	error: {
 		fontSize: 18,
 		color: '#FF0000',

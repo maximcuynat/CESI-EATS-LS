@@ -19,12 +19,12 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
   ];
   if (type === 'text') {
     return (
-      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} />
+      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' />
     );
   }
   else {
     return (
-      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} secureTextEntry={true} {...rest} />
+      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} secureTextEntry={true} {...rest} autoCapitalize='none' />
     );
   }
 };
@@ -32,10 +32,8 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
 const styles = StyleSheet.create({
     text: {
         fontSize: 18,
-        marginBottom: 10,
         color: '#001524',
         width: '100%',
-        fontFamily: 'Lemon-Regular',
     },
     textInput: {
         backgroundColor: '#F5F5F5',

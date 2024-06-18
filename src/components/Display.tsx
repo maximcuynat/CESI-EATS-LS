@@ -7,7 +7,7 @@ interface ViewDisplayProps extends ViewProps {
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
     justify?: 'center' | 'top' | 'bottom';
-    type?: 'fill' | 'card';
+    type?: 'fill' | 'card' | 'default';
 }
 
 const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type, style, ...rest }) => {
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFECD1',
         paddingHorizontal: 15,
         paddingVertical: 10,
+    },
+    default: {
+        flex: 0,
     },
     fill: {
         flex: 1,

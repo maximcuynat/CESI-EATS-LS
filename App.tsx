@@ -5,18 +5,11 @@ import { AuthProvider } from './src/context/AuthContext';  // Importez votre Aut
 import MainApp from './src/MainApp';  // Importez votre composant principal depuis le dossier src
 
 // Load fonts
-import { useFonts } from 'expo-font';
+import { loadFonts } from './src/components/Font';
 
 const App = () => {
-
-    const [fontsLoaded] = useFonts({
-        'Lemon-Regular': require('./assets/font/Lemon/Lemon-Regular.ttf'),
-    });
-
-    if (!fontsLoaded) {
-        return null;
-    }
-
+    // Load fonts
+    loadFonts();
     return (
         <Provider store={store}>
             <AuthProvider>

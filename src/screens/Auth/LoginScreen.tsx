@@ -22,8 +22,13 @@ export default function LoginScreen () {
 	const { login } = useAuth();
 
 	// Variables d'état
-	const [pseudo, setPseudo] = useState('m.cuynat');
-	const [mot_de_passe, setMotDePasse] = useState('mcuyntatpsw');
+	const [pseudo, setPseudo] = useState('');
+	// Regex pour pseudo minuscule et chiffre
+	const pseudoRegex = /^[a-z0-9]+$/;
+
+	const [mot_de_passe, setMotDePasse] = useState('');
+	// Regex pour mot de passe
+	const motDePasseRegex = /^[a-zA-Z0-9]{6,}$/;
 
 	// Variables d'état pour les erreurs
 	const [pseudoErr, setPseudoErr] = useState('');
@@ -33,15 +38,19 @@ export default function LoginScreen () {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
-		// If les champs sont vides
+		// Validations des champs
 		if (!pseudo) {
 			setPseudoErr('Le pseudo est requis');
+		} else if (!pseudoRegex.test(pseudo)) {
+			setPseudoErr('Le pseudo doit être en minuscule et ne contenir que des chiffres');
 		} else {
 			setPseudoErr('');
 		}
 
 		if (!mot_de_passe) {
 			setMotDePasseErr('Le mot de passe est requis');
+		} else if (!motDePasseRegex.test(mot_de_passe)) {
+			setMotDePasseErr('Le mot de passe doit contenir au moins 6 caractères');
 		} else {
 			setMotDePasseErr('');
 		}
@@ -67,22 +76,22 @@ export default function LoginScreen () {
       >
 		<ViewDisplay align="center" justify="center" type='fill'>
 			<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
-			<ViewDisplay align="center" justify="center" type=''>
-				{/* Pseudo */}
-				<TextView>Pseudo</TextView>
-				<TextInputView placeholder="Votre pseudo" value={pseudo} onChangeText={setPseudo} />
+			<ViewDisplay align="center" justify="center" type='default'>
+			{/* Pseudo */}
+				<TextView type="subtitle">Pseudo</TextView>
+				<TextInputView placeholder="Votre pseudo" onChangeText={setPseudo} />
 				<TextView type="error">{pseudoErr}</TextView>
 
 			{/* Mot de passe */}
-				<TextView>Mot de passe</TextView>
-				<TextInputView  type="password" placeholder="Mot de passe" value={mot_de_passe} onChangeText={setMotDePasse} />
-				<TextView type="error">{motDePasseErr}</TextView>
+				<TextView type="subtitle">Mot de passe</TextView>
+				<TextInputView  type="password" placeholder="Mot de passe" onChangeText={setMotDePasse} />
+				{motDePasseErr && <TextView type="error">{motDePasseErr}</TextView>}
 
 			{/* Bouton de connexion */}
-				<ButtonView label="Connexion" onClick={handleSubmit} />
+				<ButtonView buttonType='primary' label="Connexion" onClick={handleSubmit} />
 
 			{/* Lien vers la page d'inscription */}
-				<ButtonView buttonType='primary'  label="Inscription" onClick={() => navigation.navigate('Signup')} />
+				<ButtonView buttonType='secondary'  label="Inscription" onClick={() => navigation.navigate('Signup')} />
 			
 			</ViewDisplay>
 		</ViewDisplay>
