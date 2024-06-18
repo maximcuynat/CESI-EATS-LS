@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 
-interface DeliveryHomeScreenProps {
+interface RestaurateurHomeScreenProps {
     route: any;
     navigation: any;
 }
 
-const HomeScreenDelivery: React.FC<DeliveryHomeScreenProps> = ({ route, navigation }) => {
+const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
     const { isAuthenticated, login, logoutUser } = useAuth();
 
     const handleLogin = () => {
@@ -30,4 +30,4 @@ const HomeScreenDelivery: React.FC<DeliveryHomeScreenProps> = ({ route, navigati
     );
 };
 
-export default HomeScreenDelivery;
+export default HomeScreenRetaurateur;

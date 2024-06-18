@@ -89,8 +89,17 @@ export default function SignupScreen(){
     if (pseudo && email && password) {
       try {
         const response = await api.signup(pseudo, password, email, role);
-        const data = response.data;
-        login(data.token);
+        
+        // Si l'utilisateur est inscrit, on le connecte
+        if (response.message === 'User registered') {
+          // Requette de connexion
+          const loginResponse = await api.login(pseudo, password);
+          console.log(loginResponse);
+          // Si l'utilisateur est connecté
+          if (loginResponse.data.message === 'User logged in') {
+            login(loginResponse.data.token);
+          }
+        }
       } catch (error) {
         console.error(error);
       }

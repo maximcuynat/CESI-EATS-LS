@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 	// Title
 	title: {
 		fontSize: 28,
-		fontWeight: 'bold',
+		fontWeight: 'bolder',
 		textAlign: 'center',
 	},
 

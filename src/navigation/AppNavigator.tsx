@@ -4,11 +4,13 @@ import { RootState } from '../store/store';  // Assurez-vous que RootState est c
 import AuthNavigator from './AuthNavigator';  // Importer votre navigation d'authentification
 
 // Importer les écrans pour chaque type d'utilisateur
-import RestaurantHomeScreen from '../screens/Restaurant/HomeScreen';
-import DeliveryHomeScreen from '../screens/Delivery/HomeScreen';
+import RestaurantHomeScreen from '../screens/Restaurateur/HomeScreen';
+import DeliveryHomeScreen from '../screens/Livreur/HomeScreen';
 
 // ClientNavigator, RestaurantNavigator, DeliveryNavigator, etc.
 import ClientNavigator from '../screens/Client/ClientNavigator';
+import RestaurateurNavigator from '../screens/Restaurateur/RestaurateurNavigator.tsx';
+import LivreurNavigator from '../screens/Livreur/LivreurNavigator';
 
 const Stack = createStackNavigator();
 
@@ -24,9 +26,9 @@ const AppNavigator = () => {
               case 'client':
                 return <ClientNavigator />;
               case 'restaurateur':
-                return <RestaurantHomeScreen route={props.route} navigation={props.navigation} />;
+                return <RestaurateurNavigator />;
               case 'livreur':
-                return <DeliveryHomeScreen route={props.route} navigation={props.navigation} />;
+                return <LivreurNavigator />;
               // Ajouter d'autres cas pour d'autres types d'utilisateurs au besoin
               default:
                 return null;  // Cas par défaut pour une gestion future
