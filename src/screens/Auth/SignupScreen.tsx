@@ -132,34 +132,24 @@ export default function SignupScreen(){
 
         <View>
           <Pressable style={[styles.role, role === 'client' && styles.roleSelect]} onPress={() => setRole('client')} >
-            <Image source={require('../../../assets/img/role-client.png')} style={{
-              height: 70,
-              width: 60,
-              }} />
+            <Image source={require('../../../assets/img/role-client.png')} style={{height: 70, width: 60 }}/>
           </Pressable>
           <TextView type='subtitle' style={[styles.subTitle, role === 'client' && styles.subTitleSelect]}>Client</TextView>
         </View>
 
         <View>
           <Pressable style={[styles.role, role === 'restaurateur' && styles.roleSelect]} onPress={() => setRole('restaurateur')} >
-            <Image source={require('../../../assets/img/role-restaurateur.png')} style={{
-              height: 65,
-              width: 65,
-              }} />
+            <Image source={require('../../../assets/img/role-restaurateur.png')} style={{ height: 65, width: 65 }}/>
           </Pressable>
           <TextView type='subtitle' style={[styles.subTitle, role === 'restaurateur' && styles.subTitleSelect]}>Restaurateur</TextView>
         </View>
 
         <View>
           <Pressable style={[styles.role, role === 'livreur' && styles.roleSelect]} onPress={() => setRole('livreur')} >
-            <Image source={require('../../../assets/img/role-livreur.png')} style={{
-              height: 70,
-              width: 75,
-              }} />
+            <Image source={require('../../../assets/img/role-livreur.png')} style={{ height: 70, width: 75 }}/>
           </Pressable>
           <TextView type='subtitle' style={[styles.subTitle, role === 'livreur' && styles.subTitleSelect]}>Livreur</TextView>
         </View>
-
 
       </ViewDisplay>
 

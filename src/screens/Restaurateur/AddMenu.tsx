@@ -22,6 +22,10 @@ const AddMenu: React.FC<AddMenuScreenProps> = ({ route, navigation }) => {
       </ViewDisplay>
       {/* Body */}
 
+      <ScrollView style={{flex: 1}}>
+        
+      </ScrollView>
+
 
 
 		</SafeAreaView>
