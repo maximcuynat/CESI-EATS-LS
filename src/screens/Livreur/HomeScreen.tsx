@@ -11,7 +11,7 @@ interface LivreurHomeScreenProps {
   navigation: any;
 }
 
-const HomeScreenLivreur: React.FC<LivreurHomeScreenProps> = ({ route, navigation }) => {
+const LivreurHomeScreen: React.FC<LivreurHomeScreenProps> = ({ route, navigation }) => {
 
   const { isAuthenticated, login, logoutUser } = useAuth();
 
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default HomeScreenLivreur;
+export default LivreurHomeScreen;
