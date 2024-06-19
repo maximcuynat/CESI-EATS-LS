@@ -1,20 +1,23 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import ViewDisplay from './Display';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 const OrderCard = ({ restaurantName, price, address, orderId, date, status, selected, icon }) => {
   return (
-    <TouchableOpacity style={[styles.card, selected ? styles.selected : null]}>
-      <ViewDisplay style={styles.header}>
+    <View style={[styles.card, selected ? styles.selected : null]}>
+      <View style={styles.header}>
         <Text style={styles.restaurantName}>{restaurantName}</Text>
-        <Text style={styles.address}  numberOfLines={2} ellipsizeMode='tail' >{address}</Text>
-        {icon && <Image source={icon} style={[styles.icon, styles.iconContainer]} />}
-        <Text style={[styles.price, styles.iconContainer]}>{price} €</Text>
-        <Text style={[styles.orderId, styles.details]}>#{orderId}</Text>
-        <Text style={[styles.status, styles.details]}>{status}</Text>
-        <Text style={[styles.date, styles.details]}>{date}</Text>
-      </ViewDisplay>
-    </TouchableOpacity>
+        {icon && <Image source={icon} style={styles.icon} />}
+      </View>
+      <View style={styles.adressprice}>
+        <Text style={styles.address}>{address}</Text>
+        <Text style={styles.price}>{price} €</Text>
+      </View>
+      <View style={styles.details}>
+        <Text style={styles.orderId}>#{orderId}</Text>
+        <Text style={styles.status}>{status}</Text>
+        <Text style={styles.date}>{date}</Text>
+      </View>
+    </View>
   );
 };
 
@@ -29,26 +32,27 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 1.5,
     elevation: 3,
-    height: 140,
     width: 270,
+    alignSelf: 'center',
   },
   selected: {
     borderColor: '#15616D',
-    borderWidth: 4,
+    borderWidth: 2,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+  },
+  adressprice: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems : 'flex-start',
   },
   restaurantName: {
     fontWeight: 'bold',
     fontSize: 18,
-  },
-  iconContainer: {
-    flexDirection: 'column', // Changé de 'row' à 'column'
-    alignItems: 'center', // Centrer les éléments verticalement
+    flex: 1, // Ensure it takes up space appropriately
   },
   icon: {
     width: 50,
@@ -57,13 +61,16 @@ const styles = StyleSheet.create({
   price: {
     fontWeight: 'bold',
     fontSize: 18,
-    marginTop: 4, // Ajouté un peu d'espace entre l'icône et le prix
+    marginBottom: 4,
+    alignSelf: 'flex-end', // Align price to the right side
+    marginLeft: 8, // Add some space between the price and the address
+    width: 50, // Ensure the price doesn't take up too much space
+    
   },
   address: {
     fontSize: 14,
     color: '#666',
     marginBottom: 8,
-    flex: 1,
   },
   details: {
     flexDirection: 'row',
