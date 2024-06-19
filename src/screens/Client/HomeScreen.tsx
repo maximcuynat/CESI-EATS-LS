@@ -5,7 +5,6 @@ import { useAuth } from '../../context/AuthContext';
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 import InputView from '../../components/Input';
-import { Button } from 'react-native-elements';
 
 interface ClientHomeScreenProps {
 	route: any;
@@ -38,9 +37,8 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 			setMenuVisible(false);
 		}, 100);
 	}
-
-	// ========================================================================================================
-
+	
+	// ====================================================================================================
 
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >

@@ -7,7 +7,7 @@ interface ViewDisplayProps extends ViewProps {
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
     justify?: 'center' | 'top' | 'bottom';
-    type?: 'fill' | 'card' | 'default';
+    type?: 'fill' | 'card' | 'default' | 'header';
 }
 
 const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type, style, ...rest }) => {
@@ -26,6 +26,8 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         
         type === 'fill' && styles.fill,
         type === 'card' && styles.card,
+        type === 'default' && styles.default,
+        type === 'header' && styles.header,
 
         style, // Garde cette ligne pour appliquer les styles supplémentaires
     ];
@@ -33,12 +35,48 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
 };
 
 const styles = StyleSheet.create({
+    // Defalut For all
     container: {
         width: '100%',
         backgroundColor: '#FFECD1',
         paddingHorizontal: 15,
         paddingVertical: 10,
     },
+
+    // Direction
+    horizontal: {
+        flexDirection: 'row',
+        width: 'auto',
+        marginHorizontal: 10,
+    },
+    vertical: {
+        flexDirection: 'column',
+    },
+
+    // Align types
+    alignCenter: {
+        alignItems: 'center',
+    },
+    alignStart: {
+        alignItems: 'flex-start',
+    },
+    alignEnd: {
+        alignItems: 'flex-end',
+    },
+
+    // Justify types
+    justifyCenter: {
+        justifyContent: 'center',
+    },
+    justifyStart: {
+        justifyContent: 'flex-start',
+        marginTop: 15,
+    },
+    justifyEnd: {
+        justifyContent: 'flex-end',
+    },
+
+    // Type
     default: {
         flex: 0,
     },
@@ -49,32 +87,10 @@ const styles = StyleSheet.create({
         height: 'auto',
         alignItems: 'stretch',
     },
-    horizontal: {
-        flexDirection: 'row',
-        width: 'auto',
-        marginHorizontal: 10,
-    },
-    vertical: {
-        flexDirection: 'column',
-    },
-    alignCenter: {
-        alignItems: 'center',
-    },
-    alignStart: {
-        alignItems: 'flex-start',
-    },
-    alignEnd: {
-        alignItems: 'flex-end',
-    },
-    justifyCenter: {
-        justifyContent: 'center',
-    },
-    justifyStart: {
-        justifyContent: 'flex-start',
-        marginTop: 15,
-    },
-    justifyEnd: {
-        justifyContent: 'flex-end',
+    header: {
+        marginTop: 35,
+        justifyContent: 'space-between',
+        backgroundColor: '#FF7D00',
     },
 });
 

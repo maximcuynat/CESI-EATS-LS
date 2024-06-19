@@ -45,20 +45,23 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 
   // Recuperer les menu du restaurateur
 
-  const menus = [];
+  const menus: any = [];
   
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
-
-			<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
+			<ViewDisplay direction='horizontal' align='center' justify='center' type='header'>
         <TextView type='title' style={{width: 'auto', textAlign: 'center'}}>Bienvenue</TextView>
+				
+				{/* Header */}
 				<Pressable style={styles.userProfile} onPressOut={handleMenuHover}>
 					<Image source={require('../../../assets/img/user.png')} style={{width: 50, height: 50}}/>
 				</Pressable>
+
+				{/* Menu déroulant */}
 				{menuVisible  && (
 					<ViewDisplay style={styles.menuProfile} direction='vertical' align='left' type='default' justify='center' >
-						<Pressable onPress={() => navigation.navigate('ClientOrders')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('RestaurateurProfile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
 						</Pressable>
 						<Pressable onPress={() => navigation.navigate('ClientFavorites')} style={styles.menuButton} >
@@ -73,15 +76,18 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 					</ViewDisplay>
 				)}
 			</ViewDisplay>
-
+			
+			{/* Ajouter un menu Button */}
       <ViewDisplay style={styles.buttonAddMenu} type='default' direction='vertical' justify='center' align='right' >
         <Pressable onPress={() => navigation.navigate('AddMenu')} >
           <Ionicons style={styles.addCircle} name="add-circle" size={80} color="#FF7D00" />
         </Pressable>
       </ViewDisplay>
 
+			{/* Liste des menus */}
+
       {menus.length === 0 ? (
-				<TextView type='error' style={{textAlign: 'center', marginTop: 20, fontWeight: '900'}}>Pas de menu disponible</TextView>
+				<TextView type='error' style={styles.errorMenu}>Pas de menu disponible</TextView>
 			) : (
 				<ScrollView style={{flex: 1}} >
 					<ViewDisplay direction='vertical' align='center' justify='top' type='fill'  >
@@ -98,6 +104,13 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 };
 
 const styles = StyleSheet.create({
+	// Error Menu
+	errorMenu :{
+		textAlign: 'center',
+		marginTop: 20,
+		fontWeight: '900',
+		zIndex: -1,
+	},
   // Button Add
   buttonAddMenu: {
     position: 'absolute',
