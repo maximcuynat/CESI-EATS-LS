@@ -115,15 +115,15 @@ export default function SignupScreen(){
 
       <TextView type='subtitle'>Pseudo</TextView>
       <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
-      <TextView type='error'>{pseudoErr}</TextView>
+      {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
 
       <TextView type='subtitle'>Email</TextView>
       <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
-      <TextView type='error'>{emailErr}</TextView>
+      {emailErr && <TextView type='error'>{emailErr}</TextView>}
 
       <TextView type='subtitle'>Mot de passe</TextView>
       <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
-      <TextView type='error'>{passwordErr}</TextView>
+      {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
 
       <TextView type='subtitle'>Rôle</TextView>
       <ViewDisplay 
@@ -137,7 +137,7 @@ export default function SignupScreen(){
               width: 60,
               }} />
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Client</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'client' && styles.subTitleSelect]}>Client</TextView>
         </View>
 
         <View>
@@ -147,7 +147,7 @@ export default function SignupScreen(){
               width: 65,
               }} />
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Restaurateur</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'restaurateur' && styles.subTitleSelect]}>Restaurateur</TextView>
         </View>
 
         <View>
@@ -157,7 +157,7 @@ export default function SignupScreen(){
               width: 75,
               }} />
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Livreur</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'livreur' && styles.subTitleSelect]}>Livreur</TextView>
         </View>
 
 
@@ -197,16 +197,13 @@ const styles = StyleSheet.create({
 	},
 
   subTitle: {
-    // Alignement
     textAlign: 'center',
-
-    // Taille
     fontSize: 16,
-
-    // Marge
     marginVertical: 10,
+    fontWeight: 'light'
+  },
 
-    // Police
-    fontFamily: 'Lemon-Regular',
+  subTitleSelect: {
+    fontWeight: 'bold',
   },
 });

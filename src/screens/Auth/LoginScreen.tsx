@@ -77,8 +77,13 @@ export default function LoginScreen () {
         }}
       >
 		<ViewDisplay align="center" justify="center" type='fill'>
+
+			{/* Logo */}
 			<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
+
+			{/* Formulaire de connexion */}
 			<ViewDisplay align="center" justify="center" type='default'>
+			
 			{/* Pseudo */}
 				<TextView type="subtitle">Pseudo</TextView>
 				<TextInputView placeholder="Votre pseudo" onChangeText={setPseudo} />
