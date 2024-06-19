@@ -1,28 +1,27 @@
 import React from 'react';
-import { SafeAreaView, Image, Pressable, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Pressable, Image } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 import InputView from '../../components/Input';
 
-interface ClientHomeScreenProps {
-	route: any;
-	navigation: any;
+interface LivreurHomeScreenProps {
+  route: any;
+  navigation: any;
 }
 
-const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
+const HomeScreenLivreur: React.FC<LivreurHomeScreenProps> = ({ route, navigation }) => {
 
-	const { isAuthenticated, login, logoutUser } = useAuth();
+  const { isAuthenticated, login, logoutUser } = useAuth();
 
-	const [menuVisible, setMenuVisible] = React.useState(false);
+  const [menuVisible, setMenuVisible] = React.useState(false);
 
-	const handleLogout = () => {
-		logoutUser();
-		setMenuVisible(false); // Fermer le menu après la déconnexion
-	};
+  const handleLogout = () => {
+    logoutUser();
+  };
 
-	const handleMenuHover = () => {
+  const handleMenuHover = () => {
 		// Detecter l'etat du menu si il est visible on le cache sinon on le laisse
 		if (menuVisible) {
 			setMenuVisible(false);
@@ -37,11 +36,9 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 			setMenuVisible(false);
 		}, 100);
 	}
-	
-	// ====================================================================================================
 
-	return (
-		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
+  return (
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
 
 			<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
 				<InputView type='search' placeholder='Rechercher un restaurant' style={{width: '80%', zIndex: -1}}/>
@@ -61,7 +58,7 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 						<Pressable onPress={() => navigation.navigate('ClientProfile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
-						<Pressable onPress={handleLogout} style={styles.menuButton} >
+						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
 							<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
 						</Pressable>
 					</ViewDisplay>
@@ -87,8 +84,17 @@ const styles = StyleSheet.create({
 	},
 
 	menuButton: {
-		width: '100%',
+		paddingHorizontal: 10,
 		paddingVertical: 6,
+		width: '100%',
+		borderBottomWidth: 1,
+	},
+
+	// menuButton exepter la dernière
+	menuButtonLast: {
+		paddingHorizontal: 10,
+		paddingVertical: 6,
+		width: '100%',
 	},
 
 	menuOption: {
@@ -110,4 +116,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default ClientHomeScreen;
+export default HomeScreenLivreur;

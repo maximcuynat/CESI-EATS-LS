@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import { Image, ScrollView, Alert } from 'react-native';
 
 import TextView from '../../components/Text';
 import ViewDisplay from '../../components/Display';
@@ -22,8 +22,13 @@ export default function LoginScreen () {
 	const { login } = useAuth();
 
 	// Variables d'état
-	const [pseudo, setPseudo] = useState('m.cuynat');
-	const [mot_de_passe, setMotDePasse] = useState('mcuyntatpsw');
+	const [pseudo, setPseudo] = useState('');
+	// Regex pour pseudo minuscule et chiffre
+	const pseudoRegex = /^[a-z0-9]+$/;
+
+	const [mot_de_passe, setMotDePasse] = useState('');
+	// Regex pour mot de passe
+	const motDePasseRegex = /^[a-zA-Z0-9]{6,}$/;
 
 	// Variables d'état pour les erreurs
 	const [pseudoErr, setPseudoErr] = useState('');
@@ -33,51 +38,55 @@ export default function LoginScreen () {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
-		// If les champs sont vides
-		if (!pseudo) {
-			setPseudoErr('Le pseudo est requis');
-		} else {
-			setPseudoErr('');
-		}
-
-		if (!mot_de_passe) {
-			setMotDePasseErr('Le mot de passe est requis');
-		} else {
-			setMotDePasseErr('');
-		}
+		// Validations des champs
 
 		if (pseudo && mot_de_passe) {
 			try {
 				const response = await api.login(pseudo, mot_de_passe);
 				const data = response.data;
 				login(data.token);
-			} catch (error) {
-				console.error(error);
+			} catch (error: any) {
+				Alert.alert('Erreur', "Pseudo ou mot de passe incorrects");
 			}
 		}
 	}
 
+	// ========================================================================================
+
 	return (
-		<ViewDisplay align="center" justify="center">
+		<ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+		<ViewDisplay align="center" justify="center" type='fill'>
+
+			{/* Logo */}
 			<Image source={require('../../../assets/icon.png')} style={{width: 200, height: 200}} />
-			<ViewDisplay align="center" justify="center" type=''>
-				{/* Pseudo */}
-				<TextView>Pseudo</TextView>
-				<TextInputView placeholder="Votre pseudo" value={pseudo} onChangeText={setPseudo} />
-				<TextView type="error">{pseudoErr}</TextView>
+
+			{/* Formulaire de connexion */}
+			<ViewDisplay align="center" justify="center" type='default'>
+			
+			{/* Pseudo */}
+				<TextView type="subtitle">Pseudo</TextView>
+				<TextInputView placeholder="Votre pseudo" onChangeText={setPseudo} />
+				{pseudoErr && <TextView type="error">{pseudoErr}</TextView>}
 
 			{/* Mot de passe */}
-				<TextView>Mot de passe</TextView>
-				<TextInputView  type="password" placeholder="Mot de passe" value={mot_de_passe} onChangeText={setMotDePasse} />
-				<TextView type="error">{motDePasseErr}</TextView>
+				<TextView type="subtitle">Mot de passe</TextView>
+				<TextInputView  type="password" placeholder="Mot de passe" onChangeText={setMotDePasse} />
+				{motDePasseErr && <TextView type="error">{motDePasseErr}</TextView>}
 
 			{/* Bouton de connexion */}
-				<ButtonView label="Connexion" onClick={handleSubmit} />
+				<ButtonView buttonType='primary' label="Connexion" onClick={handleSubmit} />
 
 			{/* Lien vers la page d'inscription */}
-				<ButtonView buttonType='primary'  label="Inscription" onClick={() => navigation.navigate('Signup')} />
+				<ButtonView buttonType='secondary'  label="Inscription" onClick={() => navigation.navigate('Signup')} />
 			
 			</ViewDisplay>
 		</ViewDisplay>
+		</ScrollView>
 	);
 };

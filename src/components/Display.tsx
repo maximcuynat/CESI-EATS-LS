@@ -6,11 +6,11 @@ interface ViewDisplayProps extends ViewProps {
     children?: React.ReactNode;
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
-    justify?: 'center' | 'top' | 'bottom';
-    type?: 'fill' | 'card' | 'none';
+    justify?: 'center' | 'top' | 'bottom' | 'between' | 'betweenS';
+    type?: 'fill' | 'card' | 'default' | 'header';
 }
 
-const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type = 'fill', style, ...rest }) => {
+const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertical', align = 'center', justify = 'center', type, style, ...rest }) => {
     const viewStyle = [
         styles.container,
         direction === 'horizontal' && styles.horizontal,
@@ -23,9 +23,14 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         justify === 'center' && styles.justifyCenter,
         justify === 'top' && styles.justifyStart,
         justify === 'bottom' && styles.justifyEnd,
+        justify === 'between' && styles.justifyBetween,
+        justify === 'betweenS' && styles.justifyBetweenStretch,
 
+        
         type === 'fill' && styles.fill,
         type === 'card' && styles.card,
+        type === 'default' && styles.default,
+        type === 'header' && styles.header,
 
         style, // Garde cette ligne pour appliquer les styles supplémentaires
     ];
@@ -33,25 +38,24 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
 };
 
 const styles = StyleSheet.create({
+    // Defalut For all
     container: {
         width: '100%',
         backgroundColor: '#FFECD1',
         paddingHorizontal: 15,
         paddingVertical: 10,
     },
-    fill: {
-        flex: 1,
-    },
-    card: {
-        height: 'auto',
-        alignItems: 'stretch',
-    },
+
+    // Direction
     horizontal: {
         flexDirection: 'row',
+        width: 'auto',
     },
     vertical: {
         flexDirection: 'column',
     },
+
+    // Align types
     alignCenter: {
         alignItems: 'center',
     },
@@ -61,6 +65,8 @@ const styles = StyleSheet.create({
     alignEnd: {
         alignItems: 'flex-end',
     },
+
+    // Justify types
     justifyCenter: {
         justifyContent: 'center',
     },
@@ -70,6 +76,29 @@ const styles = StyleSheet.create({
     },
     justifyEnd: {
         justifyContent: 'flex-end',
+    },
+    justifyBetween: {
+        justifyContent: 'space-between',
+    },
+    justifyBetweenStretch: {
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+    },
+
+    // Type
+    default: {
+        flex: 0,
+    },
+    fill: {
+        flex: 1,
+    },
+    card: {
+        height: 'auto',
+        alignItems: 'stretch',
+    },
+    header: {
+        marginTop: 35,
+        justifyContent: 'space-between',
     },
 });
 

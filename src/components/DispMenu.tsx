@@ -24,7 +24,8 @@ const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
         <TextView type="subtitle" style={styles.description}>{menu.description}</TextView>
       </ViewDisplay>
 
-      <ViewDisplay style={styles.rightContainer} align="right" type='none'>
+
+      <ViewDisplay style={styles.rightContainer} align="right" type="default">
         <Image source={{ uri: menu.path_image }} style={styles.image} />
         {menu.items.map((item, index) => (
             <TextView key={index} type="subtitle" style={styles.item}>{menu.quantiteItems[index]} x {item}</TextView>
@@ -36,39 +37,32 @@ const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
 };
 
 const styles = StyleSheet.create({
-  price: {
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
   cardContent: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
     backgroundColor: "#ffffff",
-    borderRadius: 20,
+    borderRadius: 10,
     marginTop: 20,
-    borderWidth: 1, // Set border width
-    borderColor: "#f5d3a1", // Set border color to match the mockup
-    shadowColor: "#000", // Add shadow for better look
+    borderColor: "#f5d3a1",
+
+    // Shadow
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 1,
     shadowRadius: 2,
+    elevation: 5,
   },
-  description: {
-    fontSize: 18,
-    color: "#636E72",
-    fontWeight: "light",
+  leftContainer: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    padding: 5,
   },
   rightContainer: {
     backgroundColor: "#ffffff",
     paddingLeft: 0,
     marginLeft: 0,
-    width: 'auto',
-  },
-  leftContainer : {
-    flex: 1,
-    backgroundColor: "#ffffff",
-    padding: 5,
+    width: "auto",
   },
   image: {
     width: 80,
@@ -83,15 +77,19 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     backgroundColor: "#FFECD1",
   },
-  itemsContainer: {
-    justifyContent: "flex-end",
-    backgroundColor: "#ffffff",
+  description: {
+    fontSize: 18,
+    color: "#636E72",
+    fontWeight: "light",
+  },
+  price: {
+    fontWeight: "bold",
   },
   item: {
     fontSize: 16,
     textAlign: "right",
     color: "#636E72",
-    marginBottom : 0
+    marginBottom: 0,
   },
 });
 
