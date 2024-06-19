@@ -12,12 +12,12 @@ import { getRestaurateurMenus } from '../../api/restaurateur';
 import DispMenu from '../../components/DispMenu';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-interface RestaurateurProfileScreenProps {
+interface ProfileScreenProps {
   route: any;
   navigation: any;
 }
 
-const RestaurateurProfile: React.FC<RestaurateurProfileScreenProps> = ({ route, navigation }) => {
+const Profile: React.FC<ProfileScreenProps> = ({ route, navigation }) => {
 
   // ================================================================================================
 
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default RestaurateurProfile;
+export default Profile;

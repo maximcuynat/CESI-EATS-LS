@@ -58,7 +58,7 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 				{/* Menu déroulant */}
 				{menuVisible  && (
 					<ViewDisplay style={styles.menuProfile} direction='vertical' align='left' type='default' justify='center' >
-						<Pressable onPress={() => navigation.navigate('RestaurateurProfile')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('Profile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
 						</Pressable>
 						{/* Mes commandes */}

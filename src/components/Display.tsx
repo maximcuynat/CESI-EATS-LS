@@ -6,7 +6,7 @@ interface ViewDisplayProps extends ViewProps {
     children?: React.ReactNode;
     direction?: 'horizontal' | 'vertical';
     align?: 'center' | 'left' | 'right';
-    justify?: 'center' | 'top' | 'bottom';
+    justify?: 'center' | 'top' | 'bottom' | 'between' | 'betweenS';
     type?: 'fill' | 'card' | 'default' | 'header';
 }
 
@@ -23,6 +23,9 @@ const ViewDisplay: React.FC<ViewDisplayProps> = ({ children, direction = 'vertic
         justify === 'center' && styles.justifyCenter,
         justify === 'top' && styles.justifyStart,
         justify === 'bottom' && styles.justifyEnd,
+        justify === 'between' && styles.justifyBetween,
+        justify === 'betweenS' && styles.justifyBetweenStretch,
+
         
         type === 'fill' && styles.fill,
         type === 'card' && styles.card,
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
     horizontal: {
         flexDirection: 'row',
         width: 'auto',
-        marginHorizontal: 10,
     },
     vertical: {
         flexDirection: 'column',
@@ -74,6 +76,13 @@ const styles = StyleSheet.create({
     },
     justifyEnd: {
         justifyContent: 'flex-end',
+    },
+    justifyBetween: {
+        justifyContent: 'space-between',
+    },
+    justifyBetweenStretch: {
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
     },
 
     // Type

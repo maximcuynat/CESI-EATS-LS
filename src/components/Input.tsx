@@ -8,9 +8,10 @@ interface InputView extends TextProps {
     placeholder?: string;
     value?: string;
     Name?: string;
+    multilignes?: boolean;
 }
 
-const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeholder, value, Name, ...rest  }) => {
+const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeholder, value, Name, multilignes = false, ...rest }) => {
   const textStyle = [
     styles.text,
     styles.shadowBox,
@@ -19,9 +20,16 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
     type === 'search' && styles.searchInput,
   ];
   if (type === 'text' || type === 'search') {
-    return (
-      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' />
-    );
+    if (multilignes) {
+      return (
+        <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' multiline />
+      );
+    }
+    else {
+      return (
+        <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' />
+      );
+    }
   }
   else {
     return (
