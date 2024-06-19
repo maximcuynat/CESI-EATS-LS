@@ -58,8 +58,8 @@ const HomeScreenLivreur: React.FC<LivreurHomeScreenProps> = ({ route, navigation
 						<Pressable onPress={() => navigation.navigate('ClientProfile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
-						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
-							<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
+						<Pressable onPress={handleLogout} style={styles.menuButton} >
+							<TextView type='subtitle' style={styles.menuOption} >Déconnexion</TextView>
 						</Pressable>
 					</ViewDisplay>
 				)}
