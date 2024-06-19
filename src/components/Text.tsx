@@ -5,11 +5,11 @@ import * as Font from 'expo-font';
 
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
-    type?: 'title' | 'subtitle' | 'text' | 'error';
+    type?: 'title' | 'subtitle' | 'normal' | 'error';
     buttonType?: 'primary' | 'secondary' | 'danger';
 }
 
-const TextView: React.FC<TextViewProps> = ({ children, style, type = "text", ...rest  }) => {
+const TextView: React.FC<TextViewProps> = ({ children, style, type, ...rest  }) => {
 
 	// Font
 	Font.loadAsync({
@@ -17,44 +17,41 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type = "text", ...
 	});
 
   const textStyle = [
-		type === 'text' && styles.default,
+		styles.text,
     type === 'title' && styles.title,
     type === 'subtitle' && styles.subtitle,
+		type === 'normal' && styles.normal,
 		type === 'error' && styles.error,
   ];
   return (<Text style={[textStyle, style]} {...rest}>{children}</Text>);
 };
 
 const styles = StyleSheet.create({
-	// Text
-  text: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#001524',
-    textAlign: 'left',
-  },
 
-	default: {
-		fontSize: 16,
-    color: '#001524',
-		width: 'auto',
+	// Applcable à tout les texte
+	text: {
+		marginVertical: 5,
 	},
 
-	// Title
+	// Type de texte
 	title: {
 		fontSize: 28,
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
 
-	// Subtitle
 	subtitle: {
 		fontSize: 20,
 		fontWeight: 'bold',
-		fontStyle: 'italic',
+		width: '100%',
 	},
 
-	// Error
+	normal: {
+		fontSize: 16,
+    color: '#001524',
+		width: 'auto',
+	},
+
 	error: {
 		fontSize: 18,
 		color: '#FF0000',

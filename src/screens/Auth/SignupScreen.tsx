@@ -115,15 +115,15 @@ export default function SignupScreen(){
 
       <TextView type='subtitle'>Pseudo</TextView>
       <TextInputView placeholder='Votre pseudo' value={pseudo} onChangeText={setPseudo} />
-      <TextView type='error'>{pseudoErr}</TextView>
+      {pseudoErr && <TextView type='error'>{pseudoErr}</TextView>}
 
       <TextView type='subtitle'>Email</TextView>
       <TextInputView placeholder='Email' onChangeText={(text: string) => setEmail(text)} />
-      <TextView type='error'>{emailErr}</TextView>
+      {emailErr && <TextView type='error'>{emailErr}</TextView>}
 
       <TextView type='subtitle'>Mot de passe</TextView>
       <TextInputView type='password' placeholder='Mot de passe' onChangeText={(text: string) => setPassword(text)} />
-      <TextView type='error'>{passwordErr}</TextView>
+      {passwordErr && <TextView type='error'>{passwordErr}</TextView>}
 
       <TextView type='subtitle'>Rôle</TextView>
       <ViewDisplay 
@@ -132,34 +132,24 @@ export default function SignupScreen(){
 
         <View>
           <Pressable style={[styles.role, role === 'client' && styles.roleSelect]} onPress={() => setRole('client')} >
-            <Image source={require('../../../assets/img/role-client.png')} style={{
-              height: 70,
-              width: 60,
-              }} />
+            <Image source={require('../../../assets/img/role-client.png')} style={{height: 70, width: 60 }}/>
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Client</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'client' && styles.subTitleSelect]}>Client</TextView>
         </View>
 
         <View>
           <Pressable style={[styles.role, role === 'restaurateur' && styles.roleSelect]} onPress={() => setRole('restaurateur')} >
-            <Image source={require('../../../assets/img/role-restaurateur.png')} style={{
-              height: 65,
-              width: 65,
-              }} />
+            <Image source={require('../../../assets/img/role-restaurateur.png')} style={{ height: 65, width: 65 }}/>
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Restaurateur</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'restaurateur' && styles.subTitleSelect]}>Restaurateur</TextView>
         </View>
 
         <View>
           <Pressable style={[styles.role, role === 'livreur' && styles.roleSelect]} onPress={() => setRole('livreur')} >
-            <Image source={require('../../../assets/img/role-livreur.png')} style={{
-              height: 70,
-              width: 75,
-              }} />
+            <Image source={require('../../../assets/img/role-livreur.png')} style={{ height: 70, width: 75 }}/>
           </Pressable>
-          <TextView type='subtitle' style={styles.subTitle}>Livreur</TextView>
+          <TextView type='subtitle' style={[styles.subTitle, role === 'livreur' && styles.subTitleSelect]}>Livreur</TextView>
         </View>
-
 
       </ViewDisplay>
 
@@ -197,16 +187,13 @@ const styles = StyleSheet.create({
 	},
 
   subTitle: {
-    // Alignement
     textAlign: 'center',
-
-    // Taille
     fontSize: 16,
-
-    // Marge
     marginVertical: 10,
+    fontWeight: 'light'
+  },
 
-    // Police
-    fontFamily: 'Lemon-Regular',
+  subTitleSelect: {
+    fontWeight: 'bold',
   },
 });

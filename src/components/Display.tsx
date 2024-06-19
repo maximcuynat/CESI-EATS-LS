@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     header: {
         marginTop: 35,
         justifyContent: 'space-between',
-        backgroundColor: '#FF7D00',
     },
 });
 
