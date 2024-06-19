@@ -5,9 +5,6 @@ import { useAuth } from '../../context/AuthContext';
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 
-// Api
-import { getRestaurateur } from '../../api/restaurateurAPI';
-
 // Components
 import DispMenu from '../../components/DispMenu';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -18,10 +15,6 @@ interface RestaurateurHomeScreenProps {
 }
 
 const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
-
-	const restaurateur = getRestaurateur();
-
-	console.log(restaurateur);
 
   const { isAuthenticated, login, logoutUser } = useAuth();
 
@@ -55,7 +48,7 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
 			<ViewDisplay direction='horizontal' align='center' justify='center' type='header'>
-        <TextView type='title' style={{width: 'auto', textAlign: 'center'}}>Bienvenue</TextView>
+        <TextView type='title' style={{width: 'auto', textAlign: 'center', zIndex: -1,}}>Bienvenue</TextView>
 				
 				{/* Header */}
 				<Pressable style={styles.userProfile} onPressOut={handleMenuHover}>
@@ -68,14 +61,29 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 						<Pressable onPress={() => navigation.navigate('RestaurateurProfile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
 						</Pressable>
-						<Pressable onPress={() => navigation.navigate('ClientFavorites')} style={styles.menuButton} >
-							<TextView type='subtitle' style={styles.menuOption} >Commandes</TextView>
+						{/* Mes commandes */}
+						<Pressable onPress={() => navigation.navigate('Orders')} style={styles.menuButton} >
+							<TextView type='subtitle' style={styles.menuOption} >Mes commandes</TextView>
 						</Pressable>
-						<Pressable onPress={() => navigation.navigate('ClientProfile')} style={styles.menuButton} >
+						{/* Gestions des menus */}
+						<Pressable onPress={() => navigation.navigate('Menus')} style={styles.menuButton} >
+							<TextView type='subtitle' style={styles.menuOption} >Mes menus</TextView>
+						</Pressable>
+						{/* Gestion des Articles */}
+						<Pressable onPress={() => navigation.navigate('Articles')} style={styles.menuButton} >
+							<TextView type='subtitle' style={styles.menuOption} >Mes articles</TextView>
+						</Pressable>
+						{/* Mon Restaurant */}
+						<Pressable onPress={() => navigation.navigate('Restaurant')} style={styles.menuButton} >
+							<TextView type='subtitle' style={styles.menuOption} >Mon restaurant</TextView>
+						</Pressable>
+						{/* Paramètres */}
+						<Pressable onPress={() => navigation.navigate('Settings')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
+						{/* Deconnexion */}
 						<Pressable onPress={handleLogout} style={styles.menuButton} >
-							<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
+							<TextView type='subtitle' style={styles.menuOption} >Déconnexion</TextView>
 						</Pressable>
 					</ViewDisplay>
 				)}
@@ -84,19 +92,19 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 			{/* Ajouter un menu Button */}
       <ViewDisplay style={styles.buttonAddMenu} type='default' direction='vertical' justify='center' align='right' >
         <Pressable onPress={() => navigation.navigate('AddMenu')} >
-          <Ionicons style={styles.addCircle} name="add-circle" size={80} color="#FF7D00" />
+          <Ionicons  name="add-circle" size={80} color="#FF7D00" />
         </Pressable>
       </ViewDisplay>
 
 			{/* Liste des menus */}
 
       {menus.length === 0 ? (
-				<TextView type='error' style={styles.errorMenu}>Pas de menu disponible</TextView>
+				<TextView type='error' style={styles.errorMenu}>Pas de commandes</TextView>
 			) : (
 				<ScrollView style={{flex: 1}} >
 					<ViewDisplay direction='vertical' align='center' justify='top' type='fill'  >
-						{menus.map((menu, index) => (
-							<DispMenu key={index} menu={menu} />
+						{menus.map((menu: any) => (
+							{/* Commandes */}
 						))}
 					</ViewDisplay>
 				</ScrollView>
@@ -117,13 +125,11 @@ const styles = StyleSheet.create({
 	},
   // Button Add
   buttonAddMenu: {
+		display: 'none',
     position: 'absolute',
     backgroundColor: 'transparent',
     zIndex: 1,
     bottom: 0,
-  },
-  addCircle: {
-    
   },
 	menuProfile: {
 		// Position

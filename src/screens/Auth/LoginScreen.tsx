@@ -39,21 +39,6 @@ export default function LoginScreen () {
 		e.preventDefault();
 
 		// Validations des champs
-		if (!pseudo) {
-			setPseudoErr('Le pseudo est requis');
-		} else if (!pseudoRegex.test(pseudo)) {
-			setPseudoErr('Le pseudo doit être en minuscule et ne contenir que des chiffres');
-		} else {
-			setPseudoErr('');
-		}
-
-		if (!mot_de_passe) {
-			setMotDePasseErr('Le mot de passe est requis');
-		} else if (!motDePasseRegex.test(mot_de_passe)) {
-			setMotDePasseErr('Le mot de passe doit contenir au moins 6 caractères');
-		} else {
-			setMotDePasseErr('');
-		}
 
 		if (pseudo && mot_de_passe) {
 			try {
