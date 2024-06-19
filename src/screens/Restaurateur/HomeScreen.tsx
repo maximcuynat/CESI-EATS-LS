@@ -82,7 +82,7 @@ const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, n
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
 						{/* Deconnexion */}
-						<Pressable onPress={handleLogout} style={styles.menuButton} >
+						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
 							<TextView type='subtitle' style={styles.menuOption} >Déconnexion</TextView>
 						</Pressable>
 					</ViewDisplay>
@@ -141,11 +141,22 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FF7D00',
 		borderRadius: 10,
 		borderWidth: 1,
+		paddingHorizontal: 0,
+		paddingVertical: 0,
 	},
 
 	menuButton: {
-		width: '100%',
+		paddingHorizontal: 10,
 		paddingVertical: 6,
+		width: '100%',
+		borderBottomWidth: 1
+	},
+
+	// menuButton exepter la dernière
+	menuButtonLast: {
+		paddingHorizontal: 10,
+		paddingVertical: 6,
+		width: '100%',
 	},
 
 	menuOption: {

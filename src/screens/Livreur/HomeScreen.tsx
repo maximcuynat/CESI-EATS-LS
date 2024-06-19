@@ -58,7 +58,7 @@ const HomeScreenLivreur: React.FC<LivreurHomeScreenProps> = ({ route, navigation
 						<Pressable onPress={() => navigation.navigate('ClientProfile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
-						<Pressable onPress={handleLogout} style={styles.menuButton} >
+						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
 							<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
 						</Pressable>
 					</ViewDisplay>
@@ -84,8 +84,17 @@ const styles = StyleSheet.create({
 	},
 
 	menuButton: {
-		width: '100%',
+		paddingHorizontal: 10,
 		paddingVertical: 6,
+		width: '100%',
+		borderBottomWidth: 1,
+	},
+
+	// menuButton exepter la dernière
+	menuButtonLast: {
+		paddingHorizontal: 10,
+		paddingVertical: 6,
+		width: '100%',
 	},
 
 	menuOption: {
