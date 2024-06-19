@@ -11,3 +11,20 @@ const getAuthHeader = () => {
         return {};
     }
 };
+
+export const AddPaiement = async (id_type_paiement? : string) => {
+    try {
+        const headers = getAuthHeader();
+        const body = {
+            ...(id_type_paiement && { id_type_paiement }),
+        };
+        const response = await axios.post(`${API_BASE_URL}/paiements/Paiements`, body, {
+            headers: headers
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+}

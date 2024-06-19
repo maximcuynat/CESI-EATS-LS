@@ -11,3 +11,53 @@ const getAuthHeader = () => {
         return {};
     }
 };
+
+export const getCommandes = async () => {
+    try {
+        const headers = getAuthHeader();
+        const response = await axios.get(`${API_BASE_URL}/commandes/Commandes`, {
+            headers: headers
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const getCommande = async (id: number) => {
+    try {
+        const headers = getAuthHeader();
+        const response = await axios.get(`${API_BASE_URL}/commandes/contenu_commande/${id}`, {
+            headers: headers
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const AddCommande = async (id_paiement : string, montant : string, panier_articles : string, panier_menus : string ) => {
+    try {
+        const headers = getAuthHeader();
+        const body = {
+            id_paiement: id_paiement,
+            montant: montant,
+            panier_articles: [panier_articles],
+            panier_menus: [panier_menus]
+        };
+        const response = await axios.post(`${API_BASE_URL}/commandes/Commandes`, body, {
+            headers: headers
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export default { getCommandes, getCommande, AddCommande };
