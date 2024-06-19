@@ -1,8 +1,6 @@
 // TextView.tsx
 import React from 'react';
 import { Text, StyleSheet, TextProps } from 'react-native';
-import * as Font from 'expo-font';
-
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
     type?: 'title' | 'subtitle' | 'normal' | 'error';
@@ -10,11 +8,6 @@ interface TextViewProps extends TextProps {
 }
 
 const TextView: React.FC<TextViewProps> = ({ children, style, type, ...rest  }) => {
-
-	// Font
-	Font.loadAsync({
-		'Lemon-Regular': require('../../assets/font/Lemon-Regular.ttf'),
-	});
 
   const textStyle = [
 		styles.text,

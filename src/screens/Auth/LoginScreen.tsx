@@ -14,31 +14,15 @@ import api from '../../api/authAPI';
 import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen () {
-
-	// Navigation
 	const navigation = useNavigation();
-
-	// Auth
 	const { login } = useAuth();
-
-	// Variables d'état
 	const [pseudo, setPseudo] = useState('');
-	// Regex pour pseudo minuscule et chiffre
 	const pseudoRegex = /^[a-z0-9]+$/;
-
 	const [mot_de_passe, setMotDePasse] = useState('');
-	// Regex pour mot de passe
 	const motDePasseRegex = /^[a-zA-Z0-9]{6,}$/;
 
-	// Variables d'état pour les erreurs
-	const [pseudoErr, setPseudoErr] = useState('');
-	const [motDePasseErr, setMotDePasseErr] = useState('');
-
-	// Fonction de validation
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
-
-		// Validations des champs
 
 		if (pseudo && mot_de_passe) {
 			try {
