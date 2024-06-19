@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/constants';
+import store from '../store/store';
 
 export const getRestaurateur = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/utilisateur/restaurateur`);
-        return response.data;
+      const token = store.getState().user.token;
+      const response = await axios.get(`${API_BASE_URL}/utilisateur/restaurateur`, {headers: {Authorization: `Bearer ${token}`}});
+      return response.data;
     } catch (error: any) {
-        throw new Error(error.response?.data?.message || 'Erreur lors de la récupération du restaurateur');
+      throw new Error(error.response?.data?.message || 'Erreur lors de la récupération du restaurateur');
     }
 };
 
@@ -42,7 +44,15 @@ export const addRestaurateur = async (description: string, path_image: string, n
 
 export const deleteRestaurateur = async () => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/utilisateur/restaurateur`);
+        // Récupérer le token d'authentification depuis le state Redux
+        const token = store.getState().user.token;
+        
+        const response = await axios.delete(`${API_BASE_URL}/utilisateur/restaurateur`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la suppression du restaurateur');

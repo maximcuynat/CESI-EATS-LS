@@ -6,7 +6,7 @@ import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 
 // Api
-import { getRestaurateurMenus } from '../../api/restaurateur';
+import { getRestaurateur } from '../../api/restaurateurAPI';
 
 // Components
 import DispMenu from '../../components/DispMenu';
@@ -18,6 +18,10 @@ interface RestaurateurHomeScreenProps {
 }
 
 const HomeScreenRetaurateur: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
+
+	const restaurateur = getRestaurateur();
+
+	console.log(restaurateur);
 
   const { isAuthenticated, login, logoutUser } = useAuth();
 

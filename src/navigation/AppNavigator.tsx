@@ -3,13 +3,9 @@ import { useSelector } from 'react-redux';  // Utilisation de useSelector pour a
 import { RootState } from '../store/store';  // Assurez-vous que RootState est correctement défini dans votre store
 import AuthNavigator from './AuthNavigator';  // Importer votre navigation d'authentification
 
-// Importer les écrans pour chaque type d'utilisateur
-import RestaurantHomeScreen from '../screens/Restaurateur/HomeScreen';
-import DeliveryHomeScreen from '../screens/Livreur/HomeScreen';
-
 // ClientNavigator, RestaurantNavigator, DeliveryNavigator, etc.
 import ClientNavigator from '../screens/Client/ClientNavigator';
-import RestaurateurNavigator from '../screens/Restaurateur/RestaurateurNavigator.tsx';
+import RestaurateurNavigator from '../screens/Restaurateur/RestaurateurNavigator';
 import LivreurNavigator from '../screens/Livreur/LivreurNavigator';
 
 const Stack = createStackNavigator();
