@@ -14,8 +14,7 @@ const getAuthHeader = () => {
 
 export const getUserProfil = async () => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/utilisateur/profil`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/utilisateur/profil`, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -29,8 +28,7 @@ export const updateUserProfil = async (pseudo?: string, email?: string) => {
             ...(pseudo && { pseudo }),
             ...(email && { email }),
         };
-        const headers = getAuthHeader();
-        const response = await axios.put(`${API_BASE_URL}/utilisateur/profil`, body, { headers: headers });
+        const response = await axios.put(`${API_BASE_URL}/utilisateur/profil`, body, { headers: getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -40,8 +38,7 @@ export const updateUserProfil = async (pseudo?: string, email?: string) => {
 
 export const deleteUserProfil = async () => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.delete(`${API_BASE_URL}/utilisateur/profil`, { headers: headers });
+        const response = await axios.delete(`${API_BASE_URL}/utilisateur/profil`, { headers: getAuthHeader() });
         return response.data;
     }
     catch (error: any) {

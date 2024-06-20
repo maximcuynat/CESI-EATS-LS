@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getArticle = async (id_article : string) => {
     try {
         const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/inventaire/article/${id_article}`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/inventaire/article/${id_article}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération de l\'article');
@@ -31,8 +31,7 @@ export const AddArticle = async (id_restaurant : string, id_type_article : strin
             prix_unitaire : prix_unitaire,
             vendable_unitairement : vendable_unitairement
         };
-        const headers = getAuthHeader();
-        const response = await axios.post(`${API_BASE_URL}/inventaire/article`, body, { headers : headers });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/article`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -49,8 +48,7 @@ export const updateArticle = async (id_article : string, id_type_article? : stri
             ...(prix_unitaire && { prix_unitaire }),
             ...(vendable_unitairement && { vendable_unitairement }),
         };
-        const headers = getAuthHeader();
-        const response = await axios.put(`${API_BASE_URL}/inventaire/article`, body, { headers : headers });
+        const response = await axios.put(`${API_BASE_URL}/inventaire/article`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -60,11 +58,10 @@ export const updateArticle = async (id_article : string, id_type_article? : stri
 
 export const deleteArticle = async (id_article : string) => {
     try {
-        const headers = getAuthHeader();
         const body = {
             id_article : id_article
         };
-        const response = await axios.delete(`${API_BASE_URL}/inventaire/article`, { headers : headers, data : body }); // A tester c chelou
+        const response = await axios.delete(`${API_BASE_URL}/inventaire/article`, { headers : getAuthHeader(), data : body }); // A tester c chelou
         return response.data;
     }
     catch (error: any) {
@@ -74,8 +71,7 @@ export const deleteArticle = async (id_article : string) => {
 
 export const getArticles = async (id_restaurant : string) => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/inventaire/articles/${id_restaurant}`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/inventaire/articles/${id_restaurant}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des articles');

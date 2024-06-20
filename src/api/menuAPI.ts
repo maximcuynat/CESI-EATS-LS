@@ -14,8 +14,7 @@ const getAuthHeader = () => {
 
 export const getMenu = async (id_menu : string) => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/inventaire/menu/${id_menu}`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/inventaire/menu/${id_menu}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération du menu');
@@ -32,8 +31,7 @@ export const AddMenu = async (id_restaurant : string, nom : string, prix_menu : 
             path_image : path_image,
             articles : [articles]
         };
-        const headers = getAuthHeader();
-        const response = await axios.post(`${API_BASE_URL}/inventaire/menu`, body, { headers : headers });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/menu`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -51,8 +49,7 @@ export const UpdateMenu = async (id_menu : string, nom? : string, prix_menu? : s
             ...(path_image && { path_image }),
             ...(articles && { articles }),
         };
-        const headers = getAuthHeader();
-        const response = await axios.put(`${API_BASE_URL}/inventaire/menu`, body, { headers : headers });
+        const response = await axios.put(`${API_BASE_URL}/inventaire/menu`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -62,11 +59,10 @@ export const UpdateMenu = async (id_menu : string, nom? : string, prix_menu? : s
 
 export const deleteMenu = async (id_menu : string) => {
     try {
-        const headers = getAuthHeader();
         const body = {
             id_menu : id_menu
         };
-        const response = await axios.delete(`${API_BASE_URL}/inventaire/menu`, { headers : headers, data : body }); // A tester c chelou
+        const response = await axios.delete(`${API_BASE_URL}/inventaire/menu`, { headers : getAuthHeader(), data : body }); // A tester c chelou
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la suppression du menu');
@@ -75,8 +71,7 @@ export const deleteMenu = async (id_menu : string) => {
 
 export const getMenus = async (id_restaurant : string) => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/inventaire/menus/${id_restaurant}`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/inventaire/menus/${id_restaurant}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des menus');

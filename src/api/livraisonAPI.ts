@@ -14,8 +14,7 @@ const getAuthHeader = () => {
 
 export const getLivraison = async (id_livraison : string) => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/livraison/${id_livraison}`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/livraison/${id_livraison}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération de la livraison');
@@ -32,8 +31,7 @@ export const AddLivraison = async (id_commande : string, id_restaurant : string,
             distance_trajet : distance_trajet,
             adresse_client : adresse_client
         };
-        const headers = getAuthHeader();
-        const response = await axios.post(`${API_BASE_URL}/livraison`, body, { headers : headers });
+        const response = await axios.post(`${API_BASE_URL}/livraison`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -47,8 +45,7 @@ export const updateLivraison = async (id_livraison : string, adresse_client? : s
             ...(adresse_client && { adresse_client }),
             ...(id_etat && { id_etat }),
         };
-        const headers = getAuthHeader();
-        const response = await axios.put(`${API_BASE_URL}/livraison/${id_livraison}`, body, { headers : headers });
+        const response = await axios.put(`${API_BASE_URL}/livraison/${id_livraison}`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -58,11 +55,10 @@ export const updateLivraison = async (id_livraison : string, adresse_client? : s
 
 export const deleteLivraison = async (id_livraison : string) => {
     try {
-        const headers = getAuthHeader();
         const body = {
             id_livraison : id_livraison
         };
-        const response = await axios.delete(`${API_BASE_URL}/livraison`, { headers : headers, data : body }); // A tester c chelou
+        const response = await axios.delete(`${API_BASE_URL}/livraison`, { headers : getAuthHeader(), data : body }); // A tester c chelou
         return response.data;
     }
     catch (error: any) {

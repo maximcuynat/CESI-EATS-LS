@@ -14,8 +14,7 @@ const getAuthHeader = () => {
 
 export const getTypesArticles = async () => {
     try {
-        const headers = getAuthHeader();
-        const response = await axios.get(`${API_BASE_URL}/inventaire/typeArticles`, { headers : headers });
+        const response = await axios.get(`${API_BASE_URL}/inventaire/typeArticles`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des types d\'articles');
@@ -27,8 +26,7 @@ export const AddTypeArticle = async (type : string) => {
         const body = {
             type : type
         };
-        const headers = getAuthHeader();
-        const response = await axios.post(`${API_BASE_URL}/inventaire/typeArticle`, body, { headers : headers });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/typeArticle`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -42,8 +40,7 @@ export const UpdateTypeArticle = async (id_type_article : string, type : string)
             ...(id_type_article && { id_type_article }),
             ...(type && { type }),
         };
-        const headers = getAuthHeader();
-        const response = await axios.put(`${API_BASE_URL}/inventaire/typeArticle`, body, { headers : headers });
+        const response = await axios.put(`${API_BASE_URL}/inventaire/typeArticle`, body, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
@@ -56,8 +53,7 @@ export const deleteTypeArticle = async (id_type_article : string) => {
         const body = {
             id_type_article : id_type_article
         };
-        const headers = getAuthHeader();
-        const response = await axios.delete(`${API_BASE_URL}/inventaire/typeArticle`, { data : body, headers : headers }); // A tester c chelou
+        const response = await axios.delete(`${API_BASE_URL}/inventaire/typeArticle`, { data : body, headers : getAuthHeader() }); // A tester c chelou
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la suppression du type d\'article');
