@@ -17,7 +17,7 @@ interface ClientHomeScreenProps {
 
 const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
-	const { isAuthenticated, login, logoutUser } = useAuth();
+	const { logoutUser } = useAuth();
 	const [menuVisible, setMenuVisible] = React.useState(false);
 	const [restaurants, setRestaurants] = React.useState([]);
 
@@ -44,9 +44,9 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
 	// Appel Api pour récupérer les restaurants disponibles
 	React.useEffect(() => {
-		const fetchRestaurants = async () => {
-			const data = await getRestaurants();
-			setRestaurants(data);
+		const fetchRestaurants = async () => { const data = await getRestaurants();
+			console.log(data);
+			setRestaurants(data.restaurants);
 		};
 		fetchRestaurants();
 	}, []);
@@ -87,11 +87,11 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 			<ViewDisplay direction="vertical" align="center" justify="center">
 				<TextView type="title">Où voulez-vous manger ?</TextView>
 				<ScrollView>
-				{restaurants.map((restaurant, index) => (
-				  <DispRestaurant key={index} restaurant={restaurant} />
-				))}
+					{restaurants.map((restaurant, index) => (
+						<DispRestaurant key={index} restaurant={restaurant} />
+					))}
 				</ScrollView>
-      		</ViewDisplay>
+			</ViewDisplay>
 
 		</SafeAreaView>
 	);
