@@ -1,58 +1,60 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import TextView from "./Text";
 import ViewDisplay from "./Display";
 import { Image } from "react-native-elements";
 
 interface DispRestaurantProps {
   restaurant: {
-    name: string;
-    distance: number;
-    address: string;
+    id_restaurant: number;
+    nom: string;
+    adresse_resto: string;
+    description: string;
     path_image: string;
   };
 }
 
 const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant }) => {
   return (
-    <ViewDisplay align="center" justify="center" direction="vertical" type="card">
-        <View style={styles.cardContent}>
-            <Image source={{ uri: restaurant.path_image }} style={styles.logo} />
-            <View style={styles.textContainer}>
-                <TextView type="title" style={styles.colorText}>{restaurant.name}</TextView>
-                <TextView type="subtitle" style={styles.subsubtitle}>Distance : {restaurant.distance} km</TextView>
-                <TextView type="subtitle" style={styles.colorText}>Adresse : {restaurant.address}</TextView>
-            </View>
+    <Pressable onPress={() => console.log(restaurant.id_restaurant)}>
+      <ViewDisplay align="center" justify="center" direction="vertical" type="card" style={styles.container}>
+        <View>
+          <TextView type="title">{restaurant.nom}</TextView>
+          <TextView type="normal">{restaurant.adresse_resto}</TextView>
+          <TextView type="normal">{restaurant.description}</TextView>
         </View>
-    </ViewDisplay>
+        <View>
+          <Image source={require("../../assets/img/RestaurantImage.png")} style={{ width: 100, height: 100 }} />
+        </View>
+      </ViewDisplay>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-    cardContent: {
-      flexDirection: "row",
-      alignItems: "center",
-      borderRadius: 10,
-      backgroundColor: "white",
-      padding: 10,
+  container: {
+    backgroundColor: "#fff",
+
+    // Border
+    borderWidth: 0,
+    borderRadius: 15,
+
+    // Shadow
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    logo: {
-      width: 75,
-      height: 75,
-      borderRadius: 10,
-      marginRight: 15,
-    },
-    textContainer: {
-      flex: 1,
-    },
-    colorText: {
-      color: '#636E72'
-    },
-    subsubtitle: {
-        fontSize: 18,
-        color: '#636E72',
-        fontWeight: 'light',
-    }
-  });
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    marginVertical: 10,
+    // Flex
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+});
 
 export default DispRestaurant;

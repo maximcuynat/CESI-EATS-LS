@@ -47,7 +47,6 @@ export const addRestaurant = async (nom: string, adresse_resto: string, descript
             description,
             ...(path_image && { path_image })
         };
-        console.log(body);
         const response = await axios.post(`${API_BASE_URL}/utilisateur/restaurant`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {

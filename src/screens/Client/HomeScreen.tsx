@@ -21,6 +21,8 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 	const [menuVisible, setMenuVisible] = React.useState(false);
 	const [restaurants, setRestaurants] = React.useState([]);
 
+	const [search, setSearch] = React.useState(''); // Recherche des restaurants
+
 	const handleLogout = () => {
 		logoutUser();
 		setMenuVisible(false); // Fermer le menu après la déconnexion
@@ -45,59 +47,75 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 	// Appel Api pour récupérer les restaurants disponibles
 	React.useEffect(() => {
 		const fetchRestaurants = async () => { const data = await getRestaurants();
-			console.log(data);
-			setRestaurants(data.restaurants);
+			setRestaurants(data);
 		};
 		fetchRestaurants();
 	}, []);
+	
+	// Quand on fait une recherche
+	React.useEffect(() => {
+		const fetchRestaurants = async () => {
+			const data = await getRestaurants(search);
+			setRestaurants(data);
+		};
+		fetchRestaurants();
+	}, [search]);
+
 	// ====================================================================================================
 
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
 
-			<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
+			<ScrollView>
 
-				{/* Header */}
-				<InputView type='search' placeholder='Rechercher un restaurant' style={{width: '80%', zIndex: -1}}/>
+				<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
 
-				<Pressable style={styles.userProfile} onPressOut={handleMenuHover}>
-					<Image source={require('../../../assets/img/user.png')} style={{width: 50, height: 50}}/>
-				</Pressable>
+					{/* Header */}
+					<InputView type='search' placeholder='Rechercher un restaurant' style={{width: '80%', zIndex: -1}} onTextChange={setSearch} />
 
-				{menuVisible  && (
-					<ViewDisplay style={styles.menuProfile} direction='vertical' align='left' type='default' justify='center' >
-						<Pressable onPress={() => navigation.navigate('Profile')} style={styles.menuButton} >
-							<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
-						</Pressable>
-						<Pressable onPress={() => navigation.navigate('Orders')} style={styles.menuButton} >
-							<TextView type='subtitle' style={styles.menuOption} >Commandes</TextView>
-						</Pressable>
-						<Pressable onPress={() => navigation.navigate('Settings')} style={styles.menuButton} >
-							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
-						</Pressable>
-						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
-							<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
-						</Pressable>
-					</ViewDisplay>
-				)}
+					<Pressable style={styles.userProfilePress} onPressOut={handleMenuHover}>
+						<Image source={require('../../../assets/img/user.png')} style={{width: 50, height: 50}}/>
+					</Pressable>
 
-			</ViewDisplay>
+					{menuVisible  && (
+						<ViewDisplay style={styles.menuProfile} direction='vertical' align='left' type='default' justify='center' >
+							<Pressable onPress={() => navigation.navigate('Profile')} style={styles.menuButton} >
+								<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
+							</Pressable>
+							<Pressable onPress={() => navigation.navigate('Orders')} style={styles.menuButton} >
+								<TextView type='subtitle' style={styles.menuOption} >Commandes</TextView>
+							</Pressable>
+							<Pressable onPress={() => navigation.navigate('Settings')} style={styles.menuButton} >
+								<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
+							</Pressable>
+							<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
+								<TextView type='subtitle' style={styles.menuOption} onPress={handleLogout} >Déconnexion</TextView>
+							</Pressable>
+						</ViewDisplay>
+					)}
 
-			{/* Contenu de la page */}
-			<ViewDisplay direction="vertical" align="center" justify="center">
-				<TextView type="title">Où voulez-vous manger ?</TextView>
-				<ScrollView>
+				</ViewDisplay>
+
+				{/* Contenu de la page */}
+				<ViewDisplay direction="vertical" align="center" justify="center" style={styles.body}>
+					<TextView type="title">Où voulez-vous manger ?</TextView>
 					{restaurants.map((restaurant, index) => (
 						<DispRestaurant key={index} restaurant={restaurant} />
 					))}
-				</ScrollView>
-			</ViewDisplay>
+				</ViewDisplay>
 
+			{/* fin de la page */}
+			</ScrollView>
 		</SafeAreaView>
 	);
 };
 
 const styles = StyleSheet.create({
+	scroll: {
+		display: 'flex',
+		width: '100%',
+		backgroundColor: 'orange',
+	},
 	// Error Menu
 	errorMenu :{
 		textAlign: 'center',
@@ -113,19 +131,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     bottom: 0,
   },
-	menuProfile: {
-		// Position
-		position: 'absolute',
-		top: 40,
-		right: 40,
-		zIndex: -1,
-		width: 'auto',
-		backgroundColor: '#FF7D00',
-		borderRadius: 10,
-		borderWidth: 1,
-		paddingHorizontal: 0,
-		paddingVertical: 0,
-	},
 
 	menuButton: {
 		paddingHorizontal: 10,
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
 		marginRight: 30,
 	},
 
-	userProfile: {
+	userProfilePress: {
 		backgroundColor: '#FF7D00',
 		borderRadius: 20,
 		height: 60,
@@ -154,10 +159,28 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-
 		borderWidth: 1,
 		borderColor: '#001524',
-	}
+
+		zIndex: 1,
+	},
+
+	menuProfile: {
+		// Position
+		position: 'absolute',
+		top: 40,
+		right: 40,
+		width: 'auto',
+		backgroundColor: '#FF7D00',
+		borderRadius: 10,
+		borderWidth: 1,
+		paddingHorizontal: 0,
+		paddingVertical: 0,
+	},
+
+	body: {
+		zIndex: -1,
+	},
 });
 
 export default Home;
