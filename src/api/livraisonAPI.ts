@@ -66,6 +66,20 @@ export const deleteLivraison = async (id_livraison : string) => {
     }
 }
 
+export const getLivraisons = async (id_etat? : string) => {
+    try {
+        const headers = getAuthHeader();
+        const params = {
+            ...(id_etat && { id_etat }),
+        };
+        const response = await axios.get(`${API_BASE_URL}/livraisons`, { headers, params });
+        return response.data;
+    }
+    catch (error: any) {
+        throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des livraisons');
+    }
+}
+
 export default {
     getLivraison,
     AddLivraison,
