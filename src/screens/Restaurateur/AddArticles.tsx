@@ -1,10 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Pressable, Image, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 import InputView from '../../components/Input';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+import typesArticlesAPI from '../../api/typearticleAPI';
 
 interface AddArticlesScreenProps {
     route: any;
@@ -12,7 +14,20 @@ interface AddArticlesScreenProps {
 }
 
 const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) => {
-  
+
+  // Récupération des types d'articles sous forme de tableau
+  const [typesArticles, setTypesArticles] = React.useState<any[]>([]);
+
+  // Récupération des types d'articles
+  React.useEffect(() => {
+    typesArticlesAPI.getTypesArticles()
+    .then((response) => {
+      setTypesArticles(response.data);
+    })
+    .catch((error) => {
+      console.log("Erreur lors de la récupération des types d'articles : ", error);
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea} >
@@ -24,6 +39,27 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
       
       {/* Body */}
       <ScrollView style={{flex: 1}}>
+
+        <ViewDisplay direction='horizontal' align='center' justify='betweenS' type='default' style={{gap: 10}}>
+          
+          <View style={{ flex: 1,}}>
+            <TextView type='subtitle'>Nom</TextView>
+            <InputView placeholder="Nom de l'article" />
+          </View>
+
+          <View style={{width: '40%'}}>
+            <TextView type='subtitle'>Prix</TextView>
+            <InputView placeholder='Prix en Euro' />
+          </View>
+          
+        </ViewDisplay>
+
+        <ViewDisplay direction='vertical' align='center' justify='betweenS' type='default'>
+          <TextView type='subtitle'>Description</TextView>
+          <InputView placeholder='Description' multilignes={true}/>
+        </ViewDisplay>
+
+        
         
       </ScrollView>
 
