@@ -17,7 +17,7 @@ interface SettingsScreenProps {
     navigation: any;
 }
 
-const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
+const Order: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
 
   // Recuperation de l'id du restaurant
   const { id } = route.params;
@@ -152,4 +152,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default Order;
