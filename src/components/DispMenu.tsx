@@ -3,33 +3,45 @@ import { StyleSheet, Image } from "react-native";
 import TextView from "./Text";
 import ViewDisplay from "./Display";
 
+// Api Article
+import { getTypesArticles } from "../api/typearticleAPI";
+
 interface DispMenuProps {
   menu: {
-    title: string;
-    price: number;
+    id_menu: number;
+    id_restaurant: number;
+    nom: string;
     description: string;
-    items: string[];
-    quantiteItems: number[];
-    path_image: string;
+    prix_menu: number;
   };
 }
 
 const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
+  // Récupération les types d'articles
+
+  const [types, setTypes] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    getTypesArticles().then((data) => {
+      setTypes(data);
+    });
+  }, []);
+
   return (
     <ViewDisplay style={styles.cardContent}>
 
       <ViewDisplay style={styles.leftContainer} type="fill" >
-        <TextView type="title" style={{fontSize:20, textAlign:"left", color: "#636E72"}}>{menu.title}</TextView>
-        <TextView type="subtitle" style={[styles.description, styles.price]} >{menu.price} €</TextView>
+        <TextView type="title" style={{fontSize:20, textAlign:"left", color: "#636E72"}}>{menu.nom}</TextView>
+        <TextView type="subtitle" style={[styles.description, styles.price]} >{menu.prix_menu} €</TextView>
         <TextView type="subtitle" style={styles.description}>{menu.description}</TextView>
       </ViewDisplay>
 
 
       <ViewDisplay style={styles.rightContainer} align="right" type="default">
-        <Image source={{ uri: menu.path_image }} style={styles.image} />
-        {menu.items.map((item, index) => (
-            <TextView key={index} type="subtitle" style={styles.item}>{menu.quantiteItems[index]} x {item}</TextView>
-          ))}
+        <Image source={require("../../assets/img/photo_menu.png")} style={styles.image} />
+        {types.map((item: string, index: number) => (
+          <TextView key={index} type="subtitle" style={styles.item}>{menu.quantiteItems[index]} x {item}</TextView>
+        ))}
       </ViewDisplay>
 
     </ViewDisplay>

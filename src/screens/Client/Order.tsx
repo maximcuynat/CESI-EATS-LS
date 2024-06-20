@@ -9,6 +9,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 // Menu API
 import { getMenus } from '../../api/menuAPI';
 import { getArticles } from '../../api/articleAPI';
+import DispMenu from '../../components/DispMenu';
 
 interface SettingsScreenProps {
     route: any;
@@ -40,39 +41,39 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
     });
   }, []);
 
+  // Fonction pour afficher les menus
+  const switchToMenus = () => {
+    setShowMenu(true);
+    setShowArticles(false);
+  }
+
+  // Fonction pour afficher les articles
+  const switchToArticles = () => {
+    setShowMenu(false);
+    setShowArticles(true);
+  }
+
   return (
     <SafeAreaView style={styles.safeArea} >
 
-
       {showMenu && 
-        <ScrollView>
-          <View style={{paddingTop: 100}}>
-            {menus.map((menu: any) => (
-              <ViewDisplay key={menu.id_menu} data={menu} />
-            ))}
-          </View>
+        <ScrollView style={{marginTop: 100}}>
         </ScrollView>
       }
 
       {showArticles && 
-        <ScrollView>
-          <View style={{paddingTop: 100}}>
-            {articles.map((article: any) => (
-              <ViewDisplay key={article.id_article} data={article} />
-            ))}
-          </View>
+        <ScrollView style={{marginTop: 100}}>
         </ScrollView>
       }
 
-
       <View style={styles.headerMenu}>
         <View style={[styles.buttonSwitchMenus, styles.commun]}>
-          <Pressable onPress={() => {setShowMenu(true); setShowArticles(false);}}>
+          <Pressable onPress={switchToMenus}>
             <TextView type='title' style={{color: '#FFECD1'}}>Menus</TextView>
           </Pressable>
         </View>
         <View style={[styles.buttonSwitchArticles, styles.commun]}>
-          <Pressable onPress={() => {setShowMenu(false); setShowArticles(true);}}>
+          <Pressable onPress={switchToArticles}>
             <TextView type='title'style={{color: '#FFECD1'}}>Articles</TextView>
           </Pressable>
         </View>
@@ -80,7 +81,7 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
 
 
       <Pressable style={styles.btnCart}>
-        <TextView type='title' style={{width: 'auto', textAlign: 'center', color: 'white',}}>Voir mon panier</TextView>
+        <TextView type='title' style={{width: 'auto', textAlign: 'center', color: 'white',}}>Voir le panier</TextView>
       </Pressable>
 		</SafeAreaView>
   );

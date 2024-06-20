@@ -20,8 +20,9 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 	const { logoutUser } = useAuth();
 	const [menuVisible, setMenuVisible] = React.useState(false);
 	const [restaurants, setRestaurants] = React.useState([]);
-
 	const [search, setSearch] = React.useState(''); // Recherche des restaurants
+
+	// Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
 
 	const handleLogout = () => {
 		logoutUser();

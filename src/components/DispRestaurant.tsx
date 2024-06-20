@@ -23,9 +23,9 @@ const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant, navigation 
 
   return (
     <ViewDisplay align="center" justify="center" direction="vertical" type="card" style={styles.container}>
-      <View>
-        <TextView type="title" style={{fontSize: 22}}>{restaurant.nom}</TextView>
-        <TextView type="normal">{restaurant.adresse_resto}</TextView>
+      <View style={{ flex: 1}}>
+        <TextView type="title" style={{fontSize: 22, textAlign: 'left'}}>{restaurant.nom}</TextView>
+        <TextView type="normal" style={{textAlign: 'left'}}>{restaurant.adresse_resto}</TextView>
         <TextView type="normal">{restaurant.description}</TextView>
       </View>
       <View>
@@ -37,7 +37,7 @@ const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant, navigation 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
 
     // Border
     borderWidth: 0,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: 'space-around'
   },
 });
 
