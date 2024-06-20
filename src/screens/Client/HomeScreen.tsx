@@ -44,12 +44,12 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
 	// Appel Api pour récupérer les restaurants disponibles
 	React.useEffect(() => {
-        const fetchRestaurants = async () => {
-            const data = await getRestaurants();
-            setRestaurants(data);
-        };
-        fetchRestaurants();
-    }, []);
+		const fetchRestaurants = async () => {
+			const data = await getRestaurants();
+			setRestaurants(data);
+		};
+		fetchRestaurants();
+	}, []);
 	// ====================================================================================================
 
 	return (
