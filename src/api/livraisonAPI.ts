@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getLivraison = async (id_livraison : string) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/livraison/${id_livraison}`, { headers : getAuthHeader() });
-        return response.data;
+        return response.data.livraison;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération de la livraison');
     }
@@ -73,7 +73,7 @@ export const getLivraisons = async (id_etat? : string) => {
             ...(id_etat && { id_etat }),
         };
         const response = await axios.get(`${API_BASE_URL}/livraisons`, { headers, params });
-        return response.data;
+        return response.data.livraisons;
     }
     catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des livraisons');

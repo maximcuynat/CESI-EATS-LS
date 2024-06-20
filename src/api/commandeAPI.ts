@@ -17,7 +17,7 @@ export const getCommandes = async () => {
         const response = await axios.get(`${API_BASE_URL}/commandes/Commandes`, {
             headers: getAuthHeader()
         });
-        return response.data;
+        return response.data.commandes;
     }
     catch (error) {
         console.error(error);
@@ -30,7 +30,7 @@ export const getCommande = async (id: number) => {
         const response = await axios.get(`${API_BASE_URL}/commandes/contenu_commande/${id}`, {
             headers: getAuthHeader()
         });
-        return response.data;
+        return response.data.commande;
     }
     catch (error) {
         console.error(error);

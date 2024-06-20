@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getRestaurant = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/utilisateur/restaurant`, { headers : getAuthHeader() });
-      return response.data;
+      return response.data.restaurant;
     } catch (error: any) {
       if (error.response?.status === 400 && error.response?.data?.message === 'Restaurant not found') {
         return false;

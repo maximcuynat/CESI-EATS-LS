@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getTypesArticles = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/inventaire/typeArticles`, { headers : getAuthHeader() });
-        return response;
+        return response.data.typeArticles;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des types d\'articles');
     }
