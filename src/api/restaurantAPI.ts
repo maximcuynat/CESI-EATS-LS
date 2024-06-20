@@ -63,7 +63,7 @@ export const deleteRestaurant = async () => {
 export const getRestaurants = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/utilisateur/restaurants`,  { headers : getAuthHeader() });
-        return response.data;
+        return response.data.restaurants;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des restaurants');
     }

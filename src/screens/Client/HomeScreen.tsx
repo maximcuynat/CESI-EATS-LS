@@ -17,7 +17,7 @@ interface ClientHomeScreenProps {
 
 const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
-	const { isAuthenticated, login, logoutUser } = useAuth();
+	const { logoutUser } = useAuth();
 	const [menuVisible, setMenuVisible] = React.useState(false);
 	const [restaurants, setRestaurants] = React.useState([]);
 
