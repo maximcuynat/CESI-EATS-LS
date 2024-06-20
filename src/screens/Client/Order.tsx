@@ -9,7 +9,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 // Menu API
 import { getMenus } from '../../api/menuAPI';
 import { getArticles } from '../../api/articleAPI';
-import DispMenu from '../../components/DispMenu';
+import DispMenu from '../../components/DispMenu';7
+import DispArticle from '../../components/DispArticle';
 
 interface SettingsScreenProps {
     route: any;
@@ -21,8 +22,8 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
   // Recuperation de l'id du restaurant
   const { id } = route.params;
 
-  const [showMenu, setShowMenu] = React.useState<boolean>(true);
-  const [showArticles, setShowArticles] = React.useState<boolean>(false);
+  const [showMenu, setShowMenu] = React.useState<boolean>(false);
+  const [showArticles, setShowArticles] = React.useState<boolean>(true);
   
   const [menus, setMenus] = React.useState<any>([]);
   const [articles, setArticles] = React.useState<any>([]);
@@ -37,6 +38,7 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
   // Recuperation des articles
   React.useEffect(() => {
     getArticles(id).then((data) => {
+      console.log(data);
       setArticles(data);
     });
   }, []);
@@ -56,15 +58,24 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.safeArea} >
 
-      {showMenu && 
-        <ScrollView style={{marginTop: 100}}>
-        </ScrollView>
-      }
+      <ScrollView style={{flex: 1, width: '100%', marginVertical: 89}}>
+        {showMenu && 
+          <ViewDisplay direction='vertical' align='center' justify='center' type='default'>
+              {menus.map((menu: any) => (
+                <DispMenu key={menu.id_menu} menu={menu} />
+              ))}
+          </ViewDisplay>
+        }
 
-      {showArticles && 
-        <ScrollView style={{marginTop: 100}}>
-        </ScrollView>
-      }
+        {showArticles && 
+          <ViewDisplay direction='vertical' align='center' justify='center' type='default'>
+            {articles.map((article: any) => (
+              <DispArticle key={article.id_article} article={article} />
+            ))}
+          </ViewDisplay>
+        }
+
+    </ScrollView>
 
       <View style={styles.headerMenu}>
         <View style={[styles.buttonSwitchMenus, styles.commun]}>

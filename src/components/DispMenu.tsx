@@ -4,7 +4,6 @@ import TextView from "./Text";
 import ViewDisplay from "./Display";
 
 // Api Article
-import { getTypesArticles } from "../api/typearticleAPI";
 
 interface DispMenuProps {
   menu: {
@@ -13,34 +12,26 @@ interface DispMenuProps {
     nom: string;
     description: string;
     prix_menu: number;
+    typeArticles: object[];
   };
 }
 
 const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
-  // Récupération les types d'articles
-
-  const [types, setTypes] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
-    getTypesArticles().then((data) => {
-      setTypes(data);
-    });
-  }, []);
-
   return (
     <ViewDisplay style={styles.cardContent}>
 
-      <ViewDisplay style={styles.leftContainer} type="fill" >
-        <TextView type="title" style={{fontSize:20, textAlign:"left", color: "#636E72"}}>{menu.nom}</TextView>
+      <ViewDisplay direction="vertical" align="left" style={styles.leftContainer}>
+        <TextView type="title" style={styles.title}>{menu.nom}</TextView>
         <TextView type="subtitle" style={[styles.description, styles.price]} >{menu.prix_menu} €</TextView>
         <TextView type="subtitle" style={styles.description}>{menu.description}</TextView>
       </ViewDisplay>
 
-
       <ViewDisplay style={styles.rightContainer} align="right" type="default">
         <Image source={require("../../assets/img/photo_menu.png")} style={styles.image} />
-        {types.map((item: string, index: number) => (
-          <TextView key={index} type="subtitle" style={styles.item}>{menu.quantiteItems[index]} x {item}</TextView>
+        {menu.typeArticles.map((type: any) => (
+          <TextView key={type.type} style={styles.item}>
+            {type.type} x {type.quantite}
+          </TextView>
         ))}
       </ViewDisplay>
 
@@ -49,14 +40,18 @@ const DispMenu: React.FC<DispMenuProps> = ({ menu }) => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    textAlign:"left",
+    color: "#636E72",
+    width: "100%",
+  },
+
   cardContent: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    backgroundColor: "#ffffff",
-    borderRadius: 10,
-    marginTop: 20,
-    borderColor: "#f5d3a1",
+    borderRadius: 15,
 
     // Shadow
     shadowColor: "#000",
@@ -64,45 +59,44 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 5,
+
+    backgroundColor: "white",
   },
+
   leftContainer: {
+    backgroundColor: "transparent",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     flex: 1,
-    backgroundColor: "#ffffff",
-    padding: 5,
   },
+
   rightContainer: {
-    backgroundColor: "#ffffff",
-    paddingLeft: 0,
-    marginLeft: 0,
+    backgroundColor: "transparent",
     width: "auto",
   },
+
   image: {
     width: 80,
     height: 80,
-    marginBottom: 20,
-    borderRadius: 10,
-    borderWidth: 3,
-    borderColor: "#FFECD1",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    backgroundColor: "#FFECD1",
   },
+
   description: {
     fontSize: 18,
     color: "#636E72",
     fontWeight: "light",
   },
+
   price: {
     fontWeight: "bold",
   },
+
   item: {
     fontSize: 16,
     textAlign: "right",
     color: "#636E72",
     marginBottom: 0,
   },
+
 });
 
 export default DispMenu;

@@ -72,7 +72,6 @@ export const deleteMenu = async (id_menu : string) => {
 export const getMenus = async (id_restaurant : string) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/inventaire/menus/${id_restaurant}`, { headers : getAuthHeader() });
-        console.log("Menus: ", response.data);
         return response.data.menus;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des menus');
