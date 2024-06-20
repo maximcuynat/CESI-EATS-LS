@@ -5,13 +5,16 @@ import { useAuth } from '../../context/AuthContext';
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
 import InputView from '../../components/Input';
+import DispRestaurant from '../../components/DispRestaurant';
+
+// Api 
 
 interface ClientHomeScreenProps {
 	route: any;
 	navigation: any;
 }
 
-const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
+const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
 	const { isAuthenticated, login, logoutUser } = useAuth();
 
@@ -37,6 +40,8 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 			setMenuVisible(false);
 		}, 100);
 	}
+
+	// Appel Api pour récupérer les restaurants disponibles
 	
 	// ====================================================================================================
 
@@ -44,8 +49,10 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
 
 			<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
+				
 				<InputView type='search' placeholder='Rechercher un restaurant' style={{width: '80%', zIndex: -1}}/>
 				
+
 				<Pressable style={styles.userProfile} onPressOut={handleMenuHover}>
 					<Image source={require('../../../assets/img/user.png')} style={{width: 50, height: 50}}/>
 				</Pressable>
@@ -68,6 +75,8 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 				)}
 
 			</ViewDisplay>
+
+			{/* Contenu de la page */}
 
 		</SafeAreaView>
 	);
@@ -136,4 +145,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default ClientHomeScreen;
+export default Home;
