@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Image, Pressable, StyleSheet } from 'react-native';
+import { SafeAreaView, Image, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 
 import ViewDisplay from '../../components/Display';
@@ -7,7 +7,8 @@ import TextView from '../../components/Text';
 import InputView from '../../components/Input';
 import DispRestaurant from '../../components/DispRestaurant';
 
-// Api 
+// Api
+import { getRestaurants } from '../../api/restaurantAPI';
 
 interface ClientHomeScreenProps {
 	route: any;
@@ -17,8 +18,8 @@ interface ClientHomeScreenProps {
 const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 
 	const { isAuthenticated, login, logoutUser } = useAuth();
-
 	const [menuVisible, setMenuVisible] = React.useState(false);
+	const [restaurants, setRestaurants] = React.useState([]);
 
 	const handleLogout = () => {
 		logoutUser();
@@ -42,16 +43,22 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 	}
 
 	// Appel Api pour récupérer les restaurants disponibles
-	
+	React.useEffect(() => {
+        const fetchRestaurants = async () => {
+            const data = await getRestaurants();
+            setRestaurants(data);
+        };
+        fetchRestaurants();
+    }, []);
 	// ====================================================================================================
 
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFECD1'}} onTouchStart={hideMenu} >
 
 			<ViewDisplay direction='horizontal' align='center' justify='center' type='default' style={{marginTop: 35, justifyContent: 'space-between'}} >
-				
+
+				{/* Header */}
 				<InputView type='search' placeholder='Rechercher un restaurant' style={{width: '80%', zIndex: -1}}/>
-				
 
 				<Pressable style={styles.userProfile} onPressOut={handleMenuHover}>
 					<Image source={require('../../../assets/img/user.png')} style={{width: 50, height: 50}}/>
@@ -77,6 +84,14 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 			</ViewDisplay>
 
 			{/* Contenu de la page */}
+			<ViewDisplay direction="vertical" align="center" justify="center">
+				<TextView type="title">Où voulez-vous manger ?</TextView>
+				<ScrollView>
+				{restaurants.map((restaurant, index) => (
+				  <DispRestaurant key={index} restaurant={restaurant} />
+				))}
+				</ScrollView>
+      		</ViewDisplay>
 
 		</SafeAreaView>
 	);
