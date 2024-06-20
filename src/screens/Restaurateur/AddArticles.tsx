@@ -19,10 +19,13 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
   // Récupération des types d'articles sous forme de tableau
   const [typesArticles, setTypesArticles] = React.useState<any[]>([]);
 
+  const [typeArticle, setTypeArticle] = React.useState<number>(1); 
+
   // Récupération des types d'articles
   React.useEffect(() => {
     typesArticlesAPI.getTypesArticles()
     .then((response) => {
+      console
       setTypesArticles(response.data);
     })
     .catch((error) => {
@@ -43,14 +46,14 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
 
         <ViewDisplay direction='horizontal' align='center' justify='betweenS' type='default' style={{gap: 10}}>
           
-          <View style={{ flex: 1,}}>
+          <View style={{flex: 1}}>
             <TextView type='subtitle'>Nom</TextView>
             <InputView placeholder="Nom de l'article" />
           </View>
 
           <View style={{width: '40%'}}>
             <TextView type='subtitle'>Prix</TextView>
-            <InputView placeholder='Prix en Euro' />
+            <InputView type='number' placeholder='Prix en Euro' />
           </View>
 
         </ViewDisplay>
@@ -61,23 +64,20 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
         </ViewDisplay>
 
         <ViewDisplay direction='horizontal' align='center' justify='betweenS' type='default' style={{gap: 10}}>
-          <View style={{width: '40%'}}>
+          <View style={{flex: 1}}>
             <TextView type='subtitle'>Type d'article</TextView>
-            <Picker>
+            <Picker selectedValue={1} onValueChange={setTypeArticle}>
               {typesArticles.map((type) => {
-                return <Picker.Item key={type.id} label={type.nom} value={type.id} />
+                return <Picker.Item key={type.id_type_article} label={type.type} value={type.id_type_article} />
               })}
             </Picker>
           </View>
           <View style={{width: '40%'}}>
             <TextView type='subtitle'>Quantité</TextView>
-            <InputView placeholder='Quantité' />
+            <InputView type='number' placeholder='Quantité' />
           </View>
         </ViewDisplay>
-
       </ScrollView>
-
-
 		</SafeAreaView>
   );
 };

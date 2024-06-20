@@ -4,7 +4,7 @@ import { StyleSheet, TextProps, TextInput } from 'react-native';
 
 interface InputView extends TextProps {
     children?: React.ReactNode;
-    type?: 'text' | 'password' | 'search';
+    type?: 'text' | 'password' | 'search' | 'number';
     placeholder?: string;
     value?: string;
     Name?: string;
@@ -18,6 +18,7 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
     type === 'text' && styles.textInput,
     type === 'password' && styles.textPassword,
     type === 'search' && styles.searchInput,
+    type === 'number' && styles.textInput,
   ];
   if (type === 'text' || type === 'search') {
     if (multilignes) {
@@ -30,6 +31,11 @@ const InputView: React.FC<InputView> = ({ children, style, type = 'text', placeh
         <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} {...rest} autoCapitalize='none' />
       );
     }
+  }
+  if (type === 'number') {
+    return (
+      <TextInput style={[textStyle, style]} placeholder={placeholder} value={value} keyboardType='numeric' {...rest} autoCapitalize='none' />
+    );
   }
   else {
     return (
