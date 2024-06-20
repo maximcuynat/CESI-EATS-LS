@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getUserProfil = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/utilisateur/profil`, { headers : getAuthHeader() });
-        return response.data;
+        return response.data.utilisateur;
     }
     catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération du profil utilisateur');

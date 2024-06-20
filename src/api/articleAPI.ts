@@ -15,7 +15,7 @@ const getAuthHeader = () => {
 export const getArticle = async (id_article : string) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/inventaire/article/${id_article}`, { headers : getAuthHeader() });
-        return response.data;
+        return response.data.article;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération de l\'article');
     }
@@ -71,7 +71,7 @@ export const deleteArticle = async (id_article : string) => {
 export const getArticles = async (id_restaurant : string) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/inventaire/articles/${id_restaurant}`, { headers : getAuthHeader() });
-        return response.data;
+        return response.data.articles;
     } catch (error: any) {
         throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des articles');
     }
