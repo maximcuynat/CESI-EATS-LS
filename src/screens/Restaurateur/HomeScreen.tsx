@@ -14,7 +14,7 @@ interface RestaurateurHomeScreenProps {
     navigation: any;
 }
 
-const RestaurateurHomeScreen: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
+const Home: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
 
   const { isAuthenticated, login, logoutUser } = useAuth();
 
@@ -178,4 +178,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default RestaurateurHomeScreen;
+export default Home;

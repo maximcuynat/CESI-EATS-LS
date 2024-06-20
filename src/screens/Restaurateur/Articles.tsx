@@ -11,7 +11,7 @@ interface ArticlesScreenProps {
     navigation: any;
 }
 
-const ArticlesScreen: React.FC<ArticlesScreenProps> = ({ route, navigation }) => {
+const Articles: React.FC<ArticlesScreenProps> = ({ route, navigation }) => {
   
 
   return (
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArticlesScreen;
+export default Articles;

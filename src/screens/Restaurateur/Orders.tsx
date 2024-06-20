@@ -11,7 +11,7 @@ interface OrdersScreenProps {
     navigation: any;
 }
 
-const OrdersScreen: React.FC<OrdersScreenProps> = ({ route, navigation }) => {
+const Orders: React.FC<OrdersScreenProps> = ({ route, navigation }) => {
   
 
   return (
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrdersScreen;
+export default Orders;

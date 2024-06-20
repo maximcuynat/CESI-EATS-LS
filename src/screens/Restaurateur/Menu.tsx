@@ -11,7 +11,7 @@ interface MenuScreenProps {
     navigation: any;
 }
 
-const MenuScreen: React.FC<MenuScreenProps> = ({ route, navigation }) => {
+const Menus: React.FC<MenuScreenProps> = ({ route, navigation }) => {
   
 
   return (
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MenuScreen;
+export default Menus;

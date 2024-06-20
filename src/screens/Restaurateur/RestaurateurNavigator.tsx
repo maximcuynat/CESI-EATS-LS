@@ -2,16 +2,16 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Importez les écrans spécifiques pour les clients
-import HomeScreen from './HomeScreen';
+import Home from './HomeScreen';
 
 // Importez les écrans spécifiques pour les restaurateurs
-import ArticlesScreen from './Articles';
-import AddArticlesScreen from './AddArticles';
+import Articles from './Articles';
+import AddArticles from './AddArticles';
 
-import MenuScreen from './Menu';
-import AddMenuScreen from './AddMenu';
+import Menus from './Menu';
+import AddMenu from './AddMenu';
 
-import OrdersScreen from './Orders';
+import Orders from './Orders';
 
 import Profile from './Profile';
 import Settings from './Settings';
@@ -21,18 +21,18 @@ const Stack = createStackNavigator();
 const RestaurateurNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="RestaurateurHome" screenOptions={{ headerShown: false, headerTitle: "Restaurateur" }}>
-            <Stack.Screen name="RestaurateurHome" component={HomeScreen} options={{ headerShown: false, headerTitle: "Home Restaurateur" }}  />
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false, headerTitle: "Home Restaurateur" }}  />
 
             {/* Gestion des Articles */}
-            <Stack.Screen name="Articles" component={ArticlesScreen} options={{ headerShown: false, headerTitle: "Articles" }} />
-            <Stack.Screen name="AddArticles" component={AddArticlesScreen} options={{ headerShown: false, headerTitle: "Add Article" }} />
+            <Stack.Screen name="Articles" component={Articles} options={{ headerShown: false, headerTitle: "Articles" }} />
+            <Stack.Screen name="AddArticles" component={AddArticles} options={{ headerShown: false, headerTitle: "Add Article" }} />
 
             {/* Gestions des Menus */}
-            <Stack.Screen name="Menus" component={MenuScreen} options={{ headerShown: false, headerTitle: "Menus Restaurateur" }} />
-            <Stack.Screen name="AddMenu" component={AddMenuScreen} options={{ headerShown: false, headerTitle: "Add Menu" }} />
+            <Stack.Screen name="Menus" component={Menus} options={{ headerShown: false, headerTitle: "Menus Restaurateur" }} />
+            <Stack.Screen name="AddMenu" component={AddMenu} options={{ headerShown: false, headerTitle: "Add Menu" }} />
 
             {/* Gestion des Commandes */}
-            <Stack.Screen name="Orders" component={OrdersScreen} options={{ headerShown: false, headerTitle: "Orders" }} />
+            <Stack.Screen name="Orders" component={Orders} options={{ headerShown: false, headerTitle: "Orders" }} />
 
             {/* Gestion des Paramètres */}
             <Stack.Screen name="Settings" component={Settings} options={{ headerShown: false, headerTitle: "Settings" }} />
