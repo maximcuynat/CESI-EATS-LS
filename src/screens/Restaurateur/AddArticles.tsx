@@ -7,6 +7,7 @@ import InputView from '../../components/Input';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import typesArticlesAPI from '../../api/typearticleAPI';
+import { Picker } from '@react-native-picker/picker';
 
 interface AddArticlesScreenProps {
     route: any;
@@ -51,7 +52,7 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
             <TextView type='subtitle'>Prix</TextView>
             <InputView placeholder='Prix en Euro' />
           </View>
-          
+
         </ViewDisplay>
 
         <ViewDisplay direction='vertical' align='center' justify='betweenS' type='default'>
@@ -59,8 +60,21 @@ const AddArticles: React.FC<AddArticlesScreenProps> = ({ route, navigation }) =>
           <InputView placeholder='Description' multilignes={true}/>
         </ViewDisplay>
 
-        
-        
+        <ViewDisplay direction='horizontal' align='center' justify='betweenS' type='default' style={{gap: 10}}>
+          <View style={{width: '40%'}}>
+            <TextView type='subtitle'>Type d'article</TextView>
+            <Picker>
+              {typesArticles.map((type) => {
+                return <Picker.Item key={type.id} label={type.nom} value={type.id} />
+              })}
+            </Picker>
+          </View>
+          <View style={{width: '40%'}}>
+            <TextView type='subtitle'>Quantité</TextView>
+            <InputView placeholder='Quantité' />
+          </View>
+        </ViewDisplay>
+
       </ScrollView>
 
 
