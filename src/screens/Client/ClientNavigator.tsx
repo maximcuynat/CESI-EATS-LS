@@ -11,8 +11,8 @@ const Stack = createStackNavigator();
 
 const ClientNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="ClientHome" screenOptions={{ headerShown: false, headerTitle: "Client" }}>
-      <Stack.Screen name="ClientHome" component={ClientHomeScreen} options={{ headerShown: false, headerTitle: "Home Client" }}  />
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, headerTitle: "Client" }}>
+      <Stack.Screen name="Home" component={ClientHomeScreen} options={{ headerShown: false, headerTitle: "Home Client" }}  />
       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false, headerTitle: "Client Profile" }}  />
       <Stack.Screen name="Settings" component={Settings} options={{ headerShown: false, headerTitle: "Client Settings" }}  />
       <Stack.Screen name="Orders" component={Orders} options={{ headerShown: false, headerTitle: "Client Orders" }}  />
