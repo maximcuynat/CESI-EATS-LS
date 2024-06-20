@@ -14,7 +14,6 @@ const getAuthHeader = () => {
 
 export const getArticle = async (id_article : string) => {
     try {
-        const headers = getAuthHeader();
         const response = await axios.get(`${API_BASE_URL}/inventaire/article/${id_article}`, { headers : getAuthHeader() });
         return response.data;
     } catch (error: any) {
