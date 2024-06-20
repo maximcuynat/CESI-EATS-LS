@@ -9,6 +9,9 @@ import TextView from '../../components/Text';
 import DispMenu from '../../components/DispMenu';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+// Api restaurateur
+import { getRestaurant } from '../../api/restaurantAPI';
+
 interface RestaurateurHomeScreenProps {
     route: any;
     navigation: any;
@@ -39,6 +42,19 @@ const Home: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
 			setMenuVisible(false);
 		}, 100);
 	}
+
+
+
+	// au chargement de la page on recupere les informations du restaurant
+	React.useEffect(() => {
+		const fetchRestaurant = async () => {
+			const restaurant = await getRestaurant();
+			if (!restaurant) {
+				navigation.navigate('Info');
+			}
+		}
+		fetchRestaurant();
+	} ,[]);
 
   // Recuperer les menu du restaurateur
 
@@ -74,7 +90,7 @@ const Home: React.FC<RestaurateurHomeScreenProps> = ({ route, navigation }) => {
 							<TextView type='subtitle' style={styles.menuOption} >Mes articles</TextView>
 						</Pressable>
 						{/* Mon Restaurant */}
-						<Pressable onPress={() => navigation.navigate('Restaurant')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('Info')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Mon restaurant</TextView>
 						</Pressable>
 						{/* Paramètres */}

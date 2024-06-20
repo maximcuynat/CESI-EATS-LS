@@ -14,6 +14,7 @@ import AddMenu from './AddMenu';
 import Orders from './Orders';
 
 import Profile from './Profile';
+import Info from './Info';
 import Settings from './Settings';
 
 const Stack = createStackNavigator();
@@ -39,6 +40,9 @@ const RestaurateurNavigator = () => {
             
             {/* Profile */}
             <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false, headerTitle: "Profile" }} />
+                
+            {/* Info */}
+            <Stack.Screen name="Info" component={Info} options={{ headerShown: false, headerTitle: "Info" }} />
         </Stack.Navigator>
     );
 };
