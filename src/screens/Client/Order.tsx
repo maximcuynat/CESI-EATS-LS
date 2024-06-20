@@ -28,6 +28,8 @@ const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
   const [menus, setMenus] = React.useState<any>([]);
   const [articles, setArticles] = React.useState<any>([]);
 
+  const [panier, setPanier] = React.useState<any>([]);
+
   // Recuperation des menus
   React.useEffect(() => {
     getMenus(id).then((data) => {

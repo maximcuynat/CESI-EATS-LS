@@ -14,12 +14,10 @@ interface DispArticleProps {
     prix_unitaire: number;
   };
 }
-
 const DispArticle: React.FC<DispArticleProps> = ({ article }) => {
 
-  // Variable d'etat pour la quantité
+
   const [quantite, setQuantite] = React.useState<number>(0);
-  
 
   return (
     <View style={{display: 'flex', flexDirection: 'column', alignItems:'flex-end'}}>
@@ -29,19 +27,13 @@ const DispArticle: React.FC<DispArticleProps> = ({ article }) => {
           <TextView type="subtitle">{article.prix_unitaire} €</TextView>
           <TextView type="subtitle">{article.description}</TextView>
         </View>
-        <View style={styles.right}>
+        <View>
           <Image source={require("../../assets/img/photo_article.png")} style={styles.image} />
         </View>
       </View>
       <View style={styles.selector}>
         <Icon name="minus" type="font-awesome" color="#636E72" onPress={() => quantite > 0 && setQuantite(quantite - 1)} size={45}/>
-        <InputView type="number" placeholder="Quantité"  style={{width: 'auto'}} value={quantite.toString()}  style={{
-          textAlign: "center",
-          width: 'auto',
-          marginBottom: 0,
-          paddingHorizontal: 0,
-          paddingVertical: 0,
-        }}/>
+        <InputView type="number" placeholder="Quantité"  style={{width: 'auto'}} value={quantite.toString()}  style={styles.inputStyle} />
         <Icon name="plus" type="font-awesome" color="#636E72" onPress={() => setQuantite(quantite + 1)} size={45} />
       </View>
     </View>
@@ -49,6 +41,13 @@ const DispArticle: React.FC<DispArticleProps> = ({ article }) => {
 };
 
 const styles = StyleSheet.create({
+  inputStyle: {
+    textAlign: "center",
+    width: 'auto',
+    marginBottom: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
   selector: {
     backgroundColor: "white",
     paddingVertical: 5,
