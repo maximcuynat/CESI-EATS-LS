@@ -100,7 +100,9 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 				<ViewDisplay direction="vertical" align="center" justify="center" style={styles.body}>
 					<TextView type="title">Où voulez-vous manger ?</TextView>
 					{restaurants.map((restaurant, index) => (
-						<DispRestaurant key={index} restaurant={restaurant} />
+						<Pressable key={index} onPress={() => navigation.navigate('Order', { id: restaurant.id_restaurant })}>
+							<DispRestaurant restaurant={restaurant} />
+						</Pressable>
 					))}
 				</ViewDisplay>
 
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
 	},
 
 	menuOption: {
-		marginBottom: 0,
+		marginBottom: 5,
 		marginRight: 30,
 	},
 

@@ -14,20 +14,24 @@ interface DispRestaurantProps {
   };
 }
 
-const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant }) => {
+interface DispRestaurantProps {
+	route: any;
+	navigation: any;
+}
+
+const DispRestaurant: React.FC<DispRestaurantProps> = ({ restaurant, navigation }) => { 
+
   return (
-    <Pressable onPress={() => console.log(restaurant.id_restaurant)}>
-      <ViewDisplay align="center" justify="center" direction="vertical" type="card" style={styles.container}>
-        <View>
-          <TextView type="title">{restaurant.nom}</TextView>
-          <TextView type="normal">{restaurant.adresse_resto}</TextView>
-          <TextView type="normal">{restaurant.description}</TextView>
-        </View>
-        <View>
-          <Image source={require("../../assets/img/RestaurantImage.png")} style={{ width: 100, height: 100 }} />
-        </View>
-      </ViewDisplay>
-    </Pressable>
+    <ViewDisplay align="center" justify="center" direction="vertical" type="card" style={styles.container}>
+      <View>
+        <TextView type="title" style={{fontSize: 22}}>{restaurant.nom}</TextView>
+        <TextView type="normal">{restaurant.adresse_resto}</TextView>
+        <TextView type="normal">{restaurant.description}</TextView>
+      </View>
+      <View>
+        <Image source={require("../../assets/img/RestaurantImage.png")} style={{ width: 100, height: 100 }} />
+      </View>
+    </ViewDisplay>
   );
 };
 
@@ -47,6 +51,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    elevation: 5,
 
     marginVertical: 10,
     // Flex

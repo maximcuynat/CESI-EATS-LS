@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 	},
 
 	menuOption: {
-		marginBottom: 0,
+		marginBottom: 5,
 		marginRight: 30,
 	},
 
