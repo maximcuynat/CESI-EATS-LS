@@ -11,7 +11,7 @@ interface SettingsScreenProps {
     navigation: any;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
+const Settings: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
   
 
   return (
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default Settings;

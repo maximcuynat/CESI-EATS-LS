@@ -52,13 +52,13 @@ const ClientHomeScreen: React.FC<ClientHomeScreenProps> = ({ route, navigation }
 
 				{menuVisible  && (
 					<ViewDisplay style={styles.menuProfile} direction='vertical' align='left' type='default' justify='center' >
-						<Pressable onPress={() => navigation.navigate('ClientOrders')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('Profile')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Profil</TextView>
 						</Pressable>
-						<Pressable onPress={() => navigation.navigate('ClientFavorites')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('Orders')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Commandes</TextView>
 						</Pressable>
-						<Pressable onPress={() => navigation.navigate('ClientProfile')} style={styles.menuButton} >
+						<Pressable onPress={() => navigation.navigate('Settings')} style={styles.menuButton} >
 							<TextView type='subtitle' style={styles.menuOption} >Paramètres</TextView>
 						</Pressable>
 						<Pressable onPress={handleLogout} style={styles.menuButtonLast} >
