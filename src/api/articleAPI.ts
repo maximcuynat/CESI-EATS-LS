@@ -30,7 +30,7 @@ export const AddArticle = async (id_restaurant : string, id_type_article : strin
             prix_unitaire : prix_unitaire,
             vendable_unitairement : vendable_unitairement
         };
-        const response = await axios.post(`${API_BASE_URL}/inventaire/article`, body, { headers : getAuthHeader() });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/article`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {

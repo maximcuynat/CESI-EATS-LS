@@ -26,7 +26,7 @@ export const AddTypeArticle = async (type : string) => {
         const body = {
             type : type
         };
-        const response = await axios.post(`${API_BASE_URL}/inventaire/typeArticle`, body, { headers : getAuthHeader() });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/typeArticle`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {

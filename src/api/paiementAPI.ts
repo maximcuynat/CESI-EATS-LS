@@ -17,9 +17,7 @@ export const AddPaiement = async (id_type_paiement? : string) => {
         const body = {
             ...(id_type_paiement && { id_type_paiement }),
         };
-        const response = await axios.post(`${API_BASE_URL}/paiements/Paiements`, body, {
-            headers: getAuthHeader()
-        });
+        const response = await axios.post(`${API_BASE_URL}/paiements/Paiements`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error) {
