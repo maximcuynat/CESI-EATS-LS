@@ -46,9 +46,7 @@ export const AddCommande = async (id_paiement : string, montant : string, panier
             panier_articles: [panier_articles],
             panier_menus: [panier_menus]
         };
-        const response = await axios.post(`${API_BASE_URL}/commandes/Commandes`, body, {
-            headers: getAuthHeader()
-        });
+        const response = await axios.post(`${API_BASE_URL}/commandes/Commandes`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error) {

@@ -14,13 +14,14 @@ import AddMenu from './AddMenu';
 import Orders from './Orders';
 
 import Profile from './Profile';
+import Info from './Info';
 import Settings from './Settings';
 
 const Stack = createStackNavigator();
 
 const RestaurateurNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="RestaurateurHome" screenOptions={{ headerShown: false, headerTitle: "Restaurateur" }}>
+        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, headerTitle: "Restaurateur" }}>
             <Stack.Screen name="Home" component={Home} options={{ headerShown: false, headerTitle: "Home Restaurateur" }}  />
 
             {/* Gestion des Articles */}
@@ -39,6 +40,9 @@ const RestaurateurNavigator = () => {
             
             {/* Profile */}
             <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false, headerTitle: "Profile" }} />
+                
+            {/* Info */}
+            <Stack.Screen name="Info" component={Info} options={{ headerShown: false, headerTitle: "Info" }} />
         </Stack.Navigator>
     );
 };

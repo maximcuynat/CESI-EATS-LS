@@ -31,7 +31,7 @@ export const AddLivraison = async (id_commande : string, id_restaurant : string,
             distance_trajet : distance_trajet,
             adresse_client : adresse_client
         };
-        const response = await axios.post(`${API_BASE_URL}/livraison`, body, { headers : getAuthHeader() });
+        const response = await axios.post(`${API_BASE_URL}/livraison`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {

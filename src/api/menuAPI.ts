@@ -31,7 +31,7 @@ export const AddMenu = async (id_restaurant : string, nom : string, prix_menu : 
             path_image : path_image,
             articles : [articles]
         };
-        const response = await axios.post(`${API_BASE_URL}/inventaire/menu`, body, { headers : getAuthHeader() });
+        const response = await axios.post(`${API_BASE_URL}/inventaire/menu`, { ...body }, { headers : getAuthHeader() });
         return response.data;
     }
     catch (error: any) {
