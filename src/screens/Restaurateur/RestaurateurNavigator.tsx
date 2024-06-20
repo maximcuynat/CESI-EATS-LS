@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 
 const RestaurateurNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="RestaurateurHome" screenOptions={{ headerShown: false, headerTitle: "Restaurateur" }}>
+        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, headerTitle: "Restaurateur" }}>
             <Stack.Screen name="Home" component={Home} options={{ headerShown: false, headerTitle: "Home Restaurateur" }}  />
 
             {/* Gestion des Articles */}
