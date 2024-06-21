@@ -3,9 +3,6 @@ import { SafeAreaView, StyleSheet, Pressable, View, ScrollView } from 'react-nat
 
 import ViewDisplay from '../../components/Display';
 import TextView from '../../components/Text';
-import InputView from '../../components/Input';
-import Ionicons from '@expo/vector-icons/Ionicons';
-
 // Menu API
 import { getMenus } from '../../api/menuAPI';
 import { getArticles } from '../../api/articleAPI';
