@@ -5,13 +5,13 @@ import { AuthProvider } from './src/context/AuthContext';  // Importez votre Aut
 import MainApp from './src/MainApp';  // Importez votre composant principal depuis le dossier src
 
 const App = () => {
-    return (
-        <Provider store={store}>
-            <AuthProvider>
-                <MainApp />
-            </AuthProvider>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <AuthProvider>
+        <MainApp />
+      </AuthProvider>
+    </Provider>
+  );
 };
 
 export default App;
