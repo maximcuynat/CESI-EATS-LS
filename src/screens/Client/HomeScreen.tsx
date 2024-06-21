@@ -100,7 +100,7 @@ const Home: React.FC<ClientHomeScreenProps> = ({ route, navigation }) => {
 				{/* Contenu de la page */}
 				<ViewDisplay direction="vertical" align="center" justify="center" style={styles.body}>
 					<TextView type="title">Où voulez-vous manger ?</TextView>
-					{restaurants.map((restaurant, index) => (
+					{restaurants.map((restaurant, index: number) => (
 						<Pressable key={index} onPress={() => navigation.navigate('Order', { id: restaurant.id_restaurant })}>
 							<DispRestaurant restaurant={restaurant} />
 						</Pressable>

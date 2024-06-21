@@ -1,6 +1,7 @@
 // TextView.tsx
 import React from 'react';
 import { Text, StyleSheet, TextProps } from 'react-native';
+
 interface TextViewProps extends TextProps {
     children?: React.ReactNode;
     type?: 'title' | 'subtitle' | 'normal' | 'error';
@@ -16,6 +17,7 @@ const TextView: React.FC<TextViewProps> = ({ children, style, type, ...rest  }) 
 		type === 'normal' && styles.normal,
 		type === 'error' && styles.error,
   ];
+	
   return (<Text style={[textStyle, style]} {...rest}>{children}</Text>);
 };
 
