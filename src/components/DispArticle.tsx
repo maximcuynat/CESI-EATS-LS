@@ -13,11 +13,26 @@ interface DispArticleProps {
     description: string;
     prix_unitaire: number;
   };
+  onAddToCart: (id: number, quantite: number) => void;
 }
-const DispArticle: React.FC<DispArticleProps> = ({ article }) => {
+const DispArticle: React.FC<DispArticleProps> = ({ article, onAddToCart }) => {
 
 
   const [quantite, setQuantite] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    onAddToCart(article.id_article, quantite);
+  }, [quantite]);
+
+  const handleOnPressPlus = () => {
+    setQuantite(quantite + 1);
+  };
+
+  const handleOnPressMinus = () => {
+    if (quantite > 0){
+      setQuantite(quantite - 1);
+    }
+  };
 
   return (
     <View style={{display: 'flex', flexDirection: 'column', alignItems:'flex-end'}}>
@@ -32,9 +47,9 @@ const DispArticle: React.FC<DispArticleProps> = ({ article }) => {
         </View>
       </View>
       <View style={styles.selector}>
-        <Icon name="minus" type="font-awesome" color="#636E72" onPress={() => quantite > 0 && setQuantite(quantite - 1)} size={45}/>
-        <InputView type="number" placeholder="Quantité"  style={{width: 'auto'}} value={quantite.toString()}  style={styles.inputStyle} />
-        <Icon name="plus" type="font-awesome" color="#636E72" onPress={() => setQuantite(quantite + 1)} size={45} />
+        <Icon name="minus" type="font-awesome" color="#636E72" onPress={() => handleOnPressMinus()} size={45}/>
+        <InputView type="number" placeholder="Quantité" value={quantite.toString()}  style={styles.inputStyle} />
+        <Icon name="plus" type="font-awesome" color="#636E72" onPress={() => handleOnPressPlus()} size={45} />
       </View>
     </View>
   );
