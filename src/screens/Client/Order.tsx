@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Pressable, View, ScrollView } from 'react-native';
 
 import ViewDisplay from '../../components/Display';
@@ -28,17 +28,22 @@ const Order: React.FC<OrderScreenProps> = ({ route, navigation }) => {
   const [menus, setMenus] = React.useState<any>([]);
   const [articles, setArticles] = React.useState<any>([]);
 
-  const [panier, setPanier] = React.useState<any>([]);
+  const [panier, setPanier] = React.useState<any>({
+    articles: {
+      id_articles: [],
+      quantite: [],
+    }
+  });
 
   // Recuperation des menus
-  React.useEffect(() => {
+  useEffect(() => {
     getMenus(id).then((data) => {
       setMenus(data);
     });
   }, []);
 
   // Recuperation des articles
-  React.useEffect(() => {
+  useEffect(() => {
     getArticles(id).then((data) => {
       console.log(data);
       setArticles(data);
@@ -57,6 +62,23 @@ const Order: React.FC<OrderScreenProps> = ({ route, navigation }) => {
     setShowArticles(true);
   }
 
+  const handleAddArticleToCart = (id: number, quantite: number) => {
+    console.log('handleAddArticleToCart');
+    const actualPanier = panier;
+    console.log(actualPanier);
+    console.log('A changer : ', id, quantite);
+    for (let i = 0; i < actualPanier.articles.id_articles.length; i++) {
+      if (actualPanier.articles.id_articles[i] === id) {
+        actualPanier.articles.quantite[i] = quantite;
+        setPanier(actualPanier);
+        return;
+      }
+    }
+    actualPanier.articles.id_articles.push(id);
+    actualPanier.articles.quantite.push(quantite);
+    setPanier(actualPanier);
+  }
+
   return (
     <SafeAreaView style={styles.safeArea} >
 
@@ -72,7 +94,7 @@ const Order: React.FC<OrderScreenProps> = ({ route, navigation }) => {
         {showArticles && 
           <ViewDisplay direction='vertical' align='center' justify='center' type='default'>
             {articles.map((article: any) => (
-              <DispArticle key={article.id_article} article={article} />
+              <DispArticle key={article.id_article} article={article} onAddToCart={handleAddArticleToCart} />
             ))}
           </ViewDisplay>
         }
