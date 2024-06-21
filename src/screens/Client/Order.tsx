@@ -12,19 +12,19 @@ import { getArticles } from '../../api/articleAPI';
 import DispMenu from '../../components/DispMenu';7
 import DispArticle from '../../components/DispArticle';
 
-interface SettingsScreenProps {
+interface OrderScreenProps {
     route: any;
     navigation: any;
 }
 
-const Order: React.FC<SettingsScreenProps> = ({ route, navigation }) => {
+const Order: React.FC<OrderScreenProps> = ({ route, navigation }) => {
 
   // Recuperation de l'id du restaurant
   const { id } = route.params;
 
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [showArticles, setShowArticles] = React.useState<boolean>(true);
-  
+
   const [menus, setMenus] = React.useState<any>([]);
   const [articles, setArticles] = React.useState<any>([]);
 
